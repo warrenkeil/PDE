@@ -1,0 +1,217 @@
+\documentclass{article}
+\usepackage{pgf,tikz,tikzscale} 
+\usepackage{amssymb}
+\usepackage{enumerate}	
+\usepackage{graphicx,lipsum,pgfplots} 
+\usepackage{amsmath, amsthm}                 
+\usepackage[top=1in,bottom=1in, left=.5in, right=.5in] {geometry}  
+\usepackage{fancyhdr}       
+
+
+
+\pagestyle{fancy}              
+\lhead{Math 5910 \newline HW 1.7, 1.8, 1.9}   
+\rhead{Warren Keil}
+
+
+
+
+
+
+
+\begin{document}
+\setlength{\parindent}{0cm}   %%%%%%%% KEEP THIS  for block style para. 
+
+
+
+\noindent
+\textbf{Section 1.7}  
+\\
+\textbf{3.}  Suppose \(u=u(x,y,z)\) is a solution of the Nuemann problem,
+\begin{align*}
+-K \Delta u &= f, (x,y,z) \in \Omega \\
+-K \nabla u \cdot \textbf{n} &= g(x,y,z), (x,y,z) \in \partial \Omega
+\end{align*}
+ where \(f\) and \(g\) are functions of \(x,y,z\). Show that \(f\) and \(g\) must satisfy the relation 
+ \[
+ \int_\Omega f dV = \int_{\partial \Omega} g dA
+ \]
+ In terms of heat flow, what is the physical meaning of this relation?
+
+\vspace{3mm} 
+
+\textit{Solution.} Let \(f\) and \(g\) be described as above. To show that \( \int_\Omega f dV = \int_{\partial \Omega} g dA\), we observe,
+
+\begin{align*}
+ \int_\Omega f dV  &= \int_\Omega -K \Delta u dV \\
+&= \int_\Omega -K \nabla^2 u dV \\
+&= \int_\Omega -K( \nabla \cdot \nabla u )dV \\
+&= \int_\Omega -K ( div \nabla u) dV \\
+&= \int_{\partial \Omega}  -K \nabla u \cdot \textbf{n} dA \\
+&= \int_{\partial \Omega} g dA
+\end{align*}
+
+The interpretation of these equations is that for a system to achieve a steady state, then \(f\), the heat generated or lost within the region, must equal the heat gained or lost through the boundary of the region. 
+
+\begin{flushright}
+\( \diamondsuit \)
+\end{flushright}
+
+\vspace{3mm}
+\textbf{4.} Let \(w\) be a scalar field and \(\phi\) a vector filed. Verify the vector identity
+\[
+\text{div}(w\phi) = \phi \cdot  \nabla w + w \text{div} \phi.
+\]
+ 
+Integrate this equation over \(\Omega\) and take \(\phi=\nabla u\), where \(u\) is a scalar fielf, to prove Green's identity
+\[
+\int_\Omega w \Delta u dV = -\int_\Omega \nabla u \cdot \nabla w dV + \int_{\partial \Omega} w \nabla u \cdot \textbf{n} dA
+\]
+
+\vspace{3mm}
+\textit{Solution.} First, to verify the vector identity, 
+
+\begin{align*}
+\text{div}(w\phi) &= \nabla \cdot (w\phi_1, w\phi_2, w\phi_3)  \\
+&= ( \frac{\partial}{\partial x }w\phi_1+\frac{\partial}{\partial y}w\phi_2+\frac{\partial}{\partial z} w\phi_3)\\
+&= w_x\phi_1+ w\phi_{1x}+w_y\phi_1+ w\phi_{1y}+w_z\phi_1+ w\phi_{1z} \\
+&=  \phi \cdot \nabla w + w( \phi_{1x} + \phi_{2y} +\phi_{3z} \\
+&= \phi \cdot \nabla w + w \text{ div } \phi
+\end{align*}
+
+To prove Green's identity, we will use the previous result starting with a slight rearrangement and substituting \(\phi = \nabla u\), and by using Gauss's Theorem (aka divergence theorem).
+
+\begin{align*}
+w \text{ div } \nabla u &= - \nabla u \cdot \nabla w + \text{ div }( w \nabla u ) \\
+w( \nabla \cdot \nabla u ) &=- \nabla u \cdot \nabla w + \text{ div }( w \nabla u )  \\
+w \Delta u  &=- \nabla u \cdot \nabla w + \text{ div }( w \nabla u ) \\
+\int_\Omega w \Delta u  dV &=\int_\Omega -\nabla u \cdot \nabla w + \text{ div }( w \nabla u ) dV\\ 
+\int_\Omega w \Delta u  dV &=-\int_\Omega \nabla u \cdot \nabla w dV+ \int_{\partial \Omega}w\nabla u \cdot \textbf{n} dA
+\end{align*}
+
+\begin{flushright}
+\( \diamondsuit \)
+\end{flushright}
+
+\vspace{3mm}
+\textbf{5.} Show that if the Dirishlet problem 
+\begin{align*}
+\Delta u &= \lambda u,  (x,y,x) \in \Omega \\
+u &= 0 , (x,y,z) \in \partial \Omega
+\end{align*}
+has a nontrivial solution \( u = u(x,y,z)\), the \(\lambda\) must be negative.
+
+\vspace{3mm}
+\textit{Solution.} We will use Green's identity as shown above and substitute in \(u\) in place of \(w\). We take note that the reason we are able to make this substitution is because \(u\) and \(w\) are both scalar fields. Making the substitution, we get,
+
+\begin{align*}
+u \Delta u = \lambda u^2 &  \\
+\int_\Omega u \Delta u =\int_\Omega \lambda u^2 &=  - \int_\Omega \nabla u \cdot \nabla u dV+\int_{\partial \Omega} u \nabla u \cdot \textbf{n} dA\\
+\lambda  \int_\Omega u^2 &=  - \int_\Omega \nabla u \cdot \nabla u dV+\int_{\partial \Omega} u \nabla u \cdot \textbf{n} dA \\
+\lambda  \int_\Omega u^2 &=  - \int_\Omega (u_{x}^2+ u_{y}^2+u_{z}^2) dV+\int_{\partial \Omega} u \nabla u \cdot \textbf{n} dA
+\end{align*}
+Now, we make a few observations before continuing here. First, we notice that the boundary condition \(u = 0 , (x,y,z) \in \partial \Omega \) implies that the integra \( \int_{\partial \Omega} u \nabla u \cdot \textbf{n} dA=0\) since \(u\) is zero everywhere on the boundary. Next, we also notice that since \( (u_{x}^2+ u_{y}^2+u_{z}^2)\geq 0\) and the problem stated that there is a nontrivial solution, then we have \( (u_{x}^2+ u_{y}^2+u_{z}^2)> 0\) and \(u^2 >0\). So let \(k =  \int_\Omega u^2 dV\) and \(j=\int_\Omega (u_{x}^2+ u_{y}^2+u_{z}^2) dV\) Then \(k,j >0\). So finishing our calculation, we have, 
+
+\begin{align*}
+\lambda  \int_\Omega u^2 &=  - \int_\Omega (u_{x}^2+ u_{y}^2+u_{z}^2) dV+\int_{\partial \Omega} u \nabla u \cdot \textbf{n} dA\\
+\lambda  k &=  - j+0\\
+\lambda &= -\frac{j}{k} \\
+\lambda & < 0
+\end{align*}
+
+\( \therefore  \lambda \) must be negative. 
+\begin{flushright}
+\( \qed \)
+\end{flushright}
+
+\newpage
+\textbf{Section 1.8} \\
+\textbf{1.} In two dimensions suppose \(u = u(r,\theta) \) satisfies Laplace's equation \( \Delta u = 0 \) in the disk \( 0 \leq r <2, \) and on the boundary it satisfies \(u(2,\theta)=3\sin 2\theta +1, (0 \leq \theta <2\). What is the value of \(u\) at the origin? Where do the maximum and minimum of \(u\) occur in the closed domain \(0 \leq r \leq 2\)?
+
+\vspace{3mm}
+
+\textit{Solution.} Using the method described in the text, we will take an average of all temperatures on the boundary to do this. Using the equation for line integrals, we have
+
+\begin{align*}
+\int_C f(r,\theta) ds &=\frac{1}{2\pi r} \int_0^{2\pi} (3 \sin 2\theta  +1)\sqrt{\left( \frac{\partial r \cos \theta}{\partial \theta}\right)^2 + \left(\frac{\partial r \sin \theta}{\partial \theta}\right)^2} d\theta \\
+&=\frac{1}{2\pi r} \int_0^{2\pi} (3 \sin 2\theta  +1)\cdot r \sqrt{ \sin^2 \theta + \cos^2 \theta } \\
+&=\frac{r}{2\pi r} \int_0^{2\pi} (3 \sin 2\theta  +1) \cdot 1 \\
+&= \frac{1}{2\pi}   | 3/2 \cos 2\theta + \theta |_0^{2\pi} \\
+&= \frac{1}{2\pi} \left[3/2+2\pi - ( 3/2 +0)   \right] \\
+&= \frac{2\pi}{ 2\pi}\\
+&= 1
+\end{align*}
+
+To find where the maximums  and minimums occur, we use Theorem 1.23 (the maximum principal), which says if \(u\) satisfies Laplace's equation on an open, bounded, connected region, and if \(u\) is not a constant function, then the max and min of \(u\) are attained on the boundary of \(\Omega\). Thus, since a have a function for the values of \(u\) on the boundary, we take its derivative and set it to zero:\( \frac{\partial}{\partial \theta} 3\sin 2\theta +1= 6 \cos 2 \theta = 0\). If we sketch the graph, we easily see that the zeros are found at \( \pi/4, 3\pi/4, 5\pi/4 ,7\pi/4\).  We also can tell by the sign of the graph around these points that the max are found at \( \pi/4\) and \( 5\pi/4 \) and the mins are found at \(3\pi/4,7\pi/4\).  
+\begin{flushright}
+\( \qed \)
+\end{flushright}
+
+\vspace{3mm} 
+
+\textbf{4. } Find all radial solutions to the two-dimensional Laplace's equation. That is, find all solutions of the form \(u= u(r),\) where \( r = \sqrt{x^2 + y^2}. \)  Find the steady=state temperature distribution in the annular domain\( 1\leq r \leq 2\) if the inner circle \(r=1\) is held at 0 degrees and the outer circle \(r=2\) is held at 10 degrees. 
+
+\vspace{3mm}
+\textit{Solution.} To find the general solution to the 2D Laplace equation, we first need to find \(u_{xx}\) and \(u_{yy}\). As stated above, let \(u= u(r),\) with \( r = \sqrt{x^2 + y^2} \). Then \(u_x = u'(r) \frac{x}{(x^2 +y^2)^.5} \)
+Thus, \(u_{xx} = u''(r) \frac{x}{(x^2 +y^2)^.5} \cdot \frac{x}{(x^2 +y^2)^.5} + \frac{y^3}{ (x^2+y^2)^{-1.5}}  \). Using the symmetry of the functions \(u\) and \(r\), we know that \(u_{yy} = u''(r) \frac{y}{(x^2 +y^2)^.5} \cdot \frac{y}{(x^2 +y^2)^.5} + \frac{x^3}{ (x^2+y^2)^{-1.5}}  \). Thus, since  \( r = \sqrt{x^2 + y^2} \), we substitute back in to get, 
+\[
+u_{xx}= \frac{x^2}{r^2} u''(r)+ \frac{y^2}{r^3},  u_{yy}= \frac{y^2}{r^2}u''(r) + \frac{x^2}{r^3}
+\]
+
+Thus, the Laplace equation \(u_{xx} + u_{yy} =0\) becomes 
+\begin{align*}
+\Delta u = u'' + \frac{1}{r}u' &= 0   \textit{ (from cylindrical coordinate in polar part of chapter)} \\
+\end{align*}
+ 
+ We then notice that that this equation is an expansion of the product rule for \(\frac{d}{du} (ru') = 0 \). Thus
+\begin{align*}
+  \int  \frac{d}{dr} (ru') dr &= \int 0 dr  \\
+  ru' &= c \\
+  u' &= \frac{c}{r} \\
+  \int u' dr &=\int  \frac{c}{r} dr\\
+  u(r) &= c_1 \ln r + c_2 
+\end{align*}
+Thus, we have found our general form of \(u(r) \). Now using the conditions, we get \(u(1)= 0 = c_2 \). And \(u(2)=10= c_1 \ln 2 \Rightarrow  c_1 = \frac{10 }{\ln 2}\)
+
+\[ \therefore  u(r) =  \frac{10 }{\ln 2} \cdot \ln r \]
+\begin{flushright}
+\( \qed \)
+\end{flushright}
+
+
+\textbf{Section 1.9}\\
+\textbf{1.} Classify the PDE
+\[
+u_{xx} + 2ku_{xt} + k^2 u_{tt} = 0,  k \neq 0
+\]
+Then find a transformation \(\xi= x+bt, \tau = x + dt\) of the independent variables that transforms the equation into a simpler equation of the form \(U_{\xi \xi} = 0\). Find the solution to the given equation in terms of two arbitrary functions. 
+
+\vspace{3mm}
+\textit{Solution.}  To classify this PDE, we take the \( A,B,C\) coefficients and find \(B^2 -4AC = 4k^2-4k^2 = 0\). Thus, this PDE has a parabolic form. As suggested in the problem, we let  \(\xi= x+bt, \tau = x + dt\) and solve for \(b,d\). Our original PDE , \(u_{xx} + 2ku_{xt} + k^2 u_{tt} = 0\) becomes, 
+\[
+Au_{xx} + Bu+{xt}+Cu_{tt} = (Aa^2 + Bab + Cb^2) U_{\xi \xi} + (2acA+B(ad+bc) + 2Cbd)U_{\xi \tau}
++(Ac^2 + Bcd+Cd^2)U_{\tau \tau} 
+\]
+From our notes in class, we know to let \(a=b=c=1\) and \(d= -\frac{B}{2C}\). This will make our coefficients for \( U_{\tau \tau} \) and \( U_{\xi \tau} \) disappear. Thus, we are left with \( U_{\xi \xi} = 0\). We integrate to find, 
+\( U_{\xi} = \phi(\tau) \). And integrate again to find \( U = \xi \phi(\tau) + \psi \). So transforming back to our \(x\) and \(t\) variables find our solution, \( u= x\cdot \phi(x+dt) + \psi( x+ dt) \). And since \(d=-\frac{B}{2C} =\frac{1}{k}\), 
+
+\[
+\therefore u = x\cdot \phi(x-\frac{t}{k}) + \psi( x-\frac{t}{k} )  
+\] 
+
+
+\begin{flushright}
+\( \qed \)
+\end{flushright}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

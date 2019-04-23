@@ -1,0 +1,246 @@
+\documentclass{article}
+\usepackage{pgf,tikz,tikzscale} 
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{multicol}
+\usepackage{enumerate}	
+\usepackage{graphicx,lipsum,pgfplots} 
+\usepackage{amsmath, amsthm}                 
+\usepackage[top=1in,bottom=1in, left=.5in, right=.5in] {geometry}  
+\usepackage{fancyhdr}       
+
+
+
+\pagestyle{fancy}              
+\lhead{Math 5910 \newline Homework 2.1, 2.2, 2.4}   
+\rhead{Warren Keil}
+
+
+
+
+
+
+
+\begin{document}
+\setlength{\parindent}{0cm}   %%%%%%%% KEEP THIS  for block style para. 
+
+
+
+%%%%%%%%%%%%%%%%%        1a   %%%%%%%%%%%%%%%%%%%%
+\textbf{Section 2.1}
+\\
+\textbf{1a.} Solve the Cauchy problem (2.1)-(2.2) for the following initial condition. \\
+a) \( \phi(x) = 1 \) if \( |x|<1 \) and \( \phi(x) =0 \) if \( |x| >1\).  \\
+
+\vspace{3mm}
+\textit{Solution.}  The Cauchy problem (2.1)-(2.1) is as follows, 
+\begin{align*}
+u_t &= ku_{xx},  \hspace{3mm} x \in \mathbb{R}, \hspace{3mm} t>0, \\
+u(x,0) &= \phi(x), \hspace{3mm} x \in \mathbb{R}.
+\end{align*}
+We know from the derivation in the chapter and in the notes, that the solution has the form, 
+\[ 
+u(x,t) =  \int_{-\infty}^{\infty} \phi(y) \frac{1}{\sqrt{4\pi kt}} e^{-(x-y)^2/(4kt)} dy
+\]
+
+We then make use of the equivalent Poisson integral representation by making a change of variable, \(r = \frac{x-y}{\sqrt{4kt}} \). Thus, \(dr = \frac{-1}{\sqrt{4kt}} dy \) \( \Rightarrow dy = -\sqrt{4kt} dr \). Also, we find that \( y = x-(\sqrt{4kt})r \). We also will find the new limits of integration by observing when \(y<1 \Rightarrow x-r\sqrt{4kt}<1 \Rightarrow r> \frac{x-1}{\sqrt{4kt}} \), and when \(y>-1 \Rightarrow  x-r\sqrt{4kt}>1 \Rightarrow r< \frac{1-x}{\sqrt{4kt}} \). Also, the integral will be equal to zero outside of this interval so we will not write it. So notice, 
+\begin{align*}
+u(x,t) &= \int_{-\infty}^{\infty} \phi(y) \frac{1}{\sqrt{4\pi kt}} e^{-(x-y)^2/(4kt)} dy \\
+&=  \int_{-\infty}^{\infty} \phi( x-(\sqrt{4kt})r) \frac{\sqrt{4kt}}{\sqrt{4\pi kt}} e^{-r^2} dr \\
+&= \frac{1}{\sqrt{\pi}} \int_{\frac{x-1}{\sqrt{4kt}}}^{ \frac{1-x}{\sqrt{4kt}}} 1 \cdot e^{-r^2} dr \\
+&= \frac{1}{\sqrt{\pi}} \int_{\frac{x-1}{\sqrt{4kt}}}^{0} e^{-r^2} dr + \frac{1}{\sqrt{\pi}} \int_{0}^{\frac{1-x}{\sqrt{4kt}}} e^{-r^2} dr \\
+&=\frac{1}{\sqrt{\pi}} \int_{0}^{\frac{1-x}{\sqrt{4kt}}} e^{-r^2} dr - \frac{1}{\sqrt{\pi}} \int_{0}^{\frac{x-1}{\sqrt{4kt}}} e^{-r^2} dr \\
+&= \frac{2}{2\sqrt{\pi}} \int_{0}^{\frac{1-x}{\sqrt{4kt}}} e^{-r^2} dr - \frac{2}{2\sqrt{\pi}} \int_{0}^{\frac{x-1}{\sqrt{4kt}}} e^{-r^2} dr \\
+&= \frac{1}{2} \text{erf}\left(\frac{1-x}{\sqrt{4kt}}\right) - \frac{1}{2} \text{erf}\left(\frac{x-1}{\sqrt{4kt}}\right). 
+\end{align*}
+ 
+\begin{flushright}
+\(\qed\) 
+\end{flushright} 
+
+
+
+
+\newpage
+\textbf{4.} Show that if \( u(x,t) \) and \(v(x,t) \) are any two solutions to the heat equation (2.1), then \( w(x,y,t) = u(x,t)v(y,t)\) solves the two-dimensional heat equation \( w_t = k(w_{xx} +w_{yy})\). Guess the solution to the two-dimensional Cauchy problem, 
+\begin{align*}
+w_t &= k(w_{xx} + w_{yy}), \hspace{3mm} (x,y) \in \mathbb{R}, \hspace{3mm} t>0 \\
+w(x,y,0)&= \psi(x,y), \hspace{3mm} (x,y) \in \mathbb{R}^2. 
+\end{align*}
+
+
+\vspace{3mm}
+\textit{Solution.} Let  \( u(x,t) \) and \(v(x,t) \) be two solutions to the heat equation. Let \( w(x,y,t) = u(x,t)v(y,t)\). Notice the following derivatives of \(w\) are:
+\begin{align*}
+w_t &= u_tv + uv_t \\
+w_x &= u_xv \\
+w_{xx} &= u_{xx}v\\
+w_y &= uv_y \\
+w_{yy} &= uv_{yy}
+\end{align*} 
+Then we observe:
+\begin{align*}
+\hspace{45mm} && w_t &= (uv)_t   &&\\
+&& &= uv_t + vu_t  && \\
+&& &= kuv_{yy} + kvu_{xx}  &\text{since u,v solve heat eqn}& \\
+&& &= k(uv_{yy} + vu_{xx})  &&\\
+&& &= k( w_{xx} + w_{yy} ).
+\end{align*} 
+Therefore, \(w\) is a solution to the 2D heat equation. 
+\begin{flushright}
+\(\qed\)
+\end{flushright}
+
+
+To guess the solution to the 2D Cauchy problem, we first observe that the solution to the 1D problem has the form ( in Poisson representation to make it more clear : \( u(x,t) = \frac{1}{\sqrt{\pi}} \int_{-\infty}^{\infty} e^{r^2} \phi(x-r \sqrt{4kt} ) dr   \).  It follows that a similar function placed along the y axis will have a similar form: \( v(y,t) =  \frac{1}{\sqrt{\pi}} \int_{-\infty}^{\infty} e^{r^2} \phi(y-r \sqrt{4kt} ) dr   \). And from the fact we just showed in this problem, we know that their product \(uv\) will solve the 2 dimensional problem. 
+ \begin{flushright}
+\(\qed\)
+\end{flushright}
+ 
+\vspace{5mm}
+
+\newpage
+
+\textbf{Section 2.2}
+
+\textbf{1.} Derive d'Alembert's formula (2.14) by determining the two arbitrary functions \(F\) and \(G\) in the general solution (2.11) using  the initial condition (2.13). 
+
+\vspace{3mm}
+\textit{Solution.} We start with the general solution \( u(x,t) = F(x-ct) + G(x+ct) \), and then use the initial conditions of both \(u\) and \(u_t\) to solve for \(F\) and \(G\). Observe, 
+\begin{align*}
+  u(x,0)=f(x) &=F(x) + G(x)    &     &      &   u_t(x,0)=g(x) &= -c F'(x) + c G'(x) \\
+  \Rightarrow cf(x) &= cF(x) + cG(x)  & & &  \Rightarrow \int g(x)dx &= -cF(x) + cG(x). \\
+   &&&&&\\
+   cf(x) + \int g(x) dx &= cF(x) + cG(x) -cF(x) + cG(x) &&&     cf(x) - \int g(x) dx &= cF(x) + cG(x) +cF(x) -cG(x)  \\
+   \Rightarrow cf(x) + \int g(x) dx &= 2cG(x) &&&  cf(x) - \int g(x) dx &= 2cF(x)  \\
+   \Rightarrow G(x) &= \frac{1}{2} f(x) + \frac{1}{2c} \int g(x)dx &&& \Rightarrow F(x)  &= \frac{1}{2}f(x) - \frac{1}{2c}\int g(x) dx
+\end{align*}
+Now, filling for \(F\) and \(G\), we get, 
+\begin{align*}
+u(x,t) &= F(x-ct) + G(x+ct) \\ 
+&= \frac{1}{2}f(x-ct) - \frac{1}{2c} \int g(x-ct) dx + \frac{1}{2} f(x+ct) + \frac{1}{2c} \int g(x+ct)dx\\
+&= \frac{1}{2}( f(x-ct) + f(x+ct) ) + \frac{1}{2c}  \int g(x+ct)dx- \int g(x-ct)dx \\
+&= \frac{1}{2}( f(x-ct) + f(x+ct) ) + \frac{1}{2c}  \int_{x-ct}^{x+ct} g(s) ds
+\end{align*}
+
+Note: We verify that \(\frac{1}{2c}\int_{x-ct}^{x+ct} g(s) ds=  \frac{1}{2c}  \int g(x+ct)dx- \int g(x-ct)dx  \) by observing that to compute the left-hand side, we take the antiderivative of \(g\) and evaluate it at \( x+ct \) to \(x-ct\). This is exactly the result of the right hand side. Thus we have shown that d'Alembert's formula follows directly from the initial conditions of the wave equation. 
+\begin{flushright}
+\( \qed\)
+\end{flushright}
+
+
+
+
+
+
+
+\newpage
+
+\textbf{2.} Calculate the exact solution to the Cauchy problem when \(c=2\), the initial displacement is \(f(x)=0\), and the initial velocity is \( g(x) =1/(1+.25x^2) \). Plot the solution surface and discuss the effect of giving  a string at rest an initial impulse. Contrast the solution with the case when \(f \neq 0 \) and \( g=0 \). 
+
+\vspace{3mm}
+\textit{Solution.} We use d'Alembert's formula to solve this. Since we are given that the initial displacement is zero, then our \(f\) terms will go away. 
+\begin{align*}
+u(x,t) &= 0 + \frac{1}{4} \int_{x-2t}^{x+2t} \frac{1}{1+\frac{1}{4}s^2}ds \\
+&= \frac{1}{4} \left[ \arctan s \right]_{x-2t}^{x+2t} \\
+&=  \frac{1}{4} \arctan(x+2t) -  \frac{1}{4}\arctan(x-2t) 
+\end{align*}
+
+Thus we have found the solution. When observing the graph below, we see that giving the string an initial velocity cause the displacement in the region of influence to be positive everywhere (in our plot). If \(g=0\) and \(f\) is a nonzero function, then our solution would be in terms of \(f\) but it would still propagate along the lines \(x+ct=a \) and \( x-ct=b\). 
+\begin{verbatim}
+u[x_, t_] := .25 ( ArcTan[x + 2 t] - ArcTan[x - 2 t] )
+Plot3D [u[x, t] , {x, -40, 40}, {t, 0, 40}, PlotRange -> All, 
+ AxesLabel -> {x, t, u}]
+\end{verbatim}
+
+\begin{centering}
+\includegraphics{pic22}
+\end{centering}
+
+
+\newpage
+\textbf{Section 2.4}
+
+\textbf{1.} Solve the initial boundary problem for the heat equation 
+\begin{align*}
+u_t &= ku_{xx},  \hspace{3mm} x >0,  \hspace{3mm} t>0 , \\
+u_x(0,t) &= 0,  \hspace{3mm} t>0, \\
+u(x,0) &= \phi(x),  \hspace{3mm} x>0. 
+\end{align*} 
+with an insulated boundary condition, by extending the initial temperature \(\phi\) to the entire real axis as an even function. 
+
+
+\vspace{3mm}
+\textit{Solution.}  We start with general solution for the Cauchy problem \(u(x,t)=\int_{-\infty}^\infty G(x-y,t) \phi(y) dy \), and we will substitute an even function for \(\phi\). Let \(\psi \) in this equation be an even function such that \( \psi(x) = \phi(x), x>0 \) and \(\psi(x) = \phi(-x), x \leq 0 \). Our new solution is \(v(x,t)=\int_{-\infty}^\infty G(x-y,t) \psi(y) dy \). Notice,
+\begin{align*}
+u(x,t)=\int_{-\infty}^\infty G(x-y,t) \psi(y) dy &= \int_{-\infty}^0 G(x-y,t)\phi(-y) dx + \int_0^{\infty} G(x-y,t) dy\\
+[\text{ Let \(z=-y\), then \(dz = -dy\) } ]\\
+&= -\int_{\infty}^0 G(x+z,t) \phi(z) dz + \int_0^{\infty} G(x-y,t) \phi(y) dy \\
+[\text{ Let \(y=z\), then \(dy=dz\) } ]\\
+&= -\int_{\infty}^0 G(x+y,t) \phi(y) dy + \int_0^{\infty} G(x-y,t) \phi(y) dy \\
+&= \int_0^{\infty} G(x+y,t) \phi(y) dy + \int_0^{\infty} G(x-y,t) \phi(y) dy \\
+&=\int_0^{\infty}  G(x+y,t) \phi(y) +G(x-y,t) \phi(y) dy \\
+&=\int_0^{\infty}  \left( G(x+y,t)  +G(x-y,t)\right) \phi(y) dy 
+\end{align*}
+Thus we've found the solution. We notice the outcome is reasonable since our \(\psi\) function was even instead of odd, and we ended with one less negative term than the result in the chapter. 
+\begin{flushright}
+\( \qed\)
+\end{flushright}
+
+
+
+\newpage
+
+\textbf{2.} Find a formula for the solution to the problem of
+\begin{align*}
+u_t &= ku_{xx}, \hspace{3mm} x>0, \hspace{3mm} t>0, \\
+u(0,t) &= 0, \hspace{3mm} t>0, \\
+u(x,0)&=1, \hspace{3mm} x>0. 
+\end{align*}
+Plot several solutions when \(k=.5\). 
+
+\vspace{2mm}
+\textit{Solution.} Let \(k=.5\). We use the results of this section, using the derivation with the odd function since we are given a boundary initial condition for the displacement and not a B.C. for \(u_x\). Thus, the solution is 
+\[u(x,t) = \int_0^{\infty} ( G(x-y,t) - G(x+y,t) ) \cdot 1 dy. \] Referring back to section 2.1, we find that \(G(x-y,t) = \frac{1}{\sqrt{4\pi kt}} e^{-(x-y)^2/(4kt)} \). Plugging into our solution, we get, 
+
+\begin{align*}
+u(x,t) &= \int_0^{\infty} ( G(x-y,t) - G(x+y,t) ) \cdot 1 dy \\
+&=\int_0^{\infty} \frac{1}{\sqrt{4\pi kt}} e^{-(x-y)^2/(4kt)}- \frac{1}{\sqrt{4\pi kt}} e^{-(x+y)^2/(4kt)} dy\\
+&=  \frac{1}{\sqrt{4\pi kt}}  \int_0^{\infty}e^{-(x-y)^2/(4kt)}-  e^{-(x+y)^2/(4kt)} dy.\\
+\end{align*}
+
+
+Plotting solutions profiles with k=.5:  Note, I wrote the following mathematica code and it is still 'running.' I'm not sure if mathematica is genuinely taking a long time to plot my graph or if I made a syntax error which is causing it not to run. 
+
+UPDATE: It finally ran. : ) 
+
+\begin{verbatim}
+v[x_, t_] := (1/Sqrt[2*Pi*t])*(Integrate[ 
+    Exp[-((x - y)^2)/(2 t)] - Exp[-((x + y)^2)/(2 t)] , {y, 0, 
+     Infinity}] )
+     
+     Plot3D [v[x, t] , {x, -40, 40}, {t, 0, 40}, PlotRange -> All, 
+ AxesLabel -> {x, t, u}]
+\end{verbatim}
+
+\begin{centering}
+\includegraphics[scale=.7]{pic24}
+\end{centering}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document} 

@@ -1,0 +1,488 @@
+\documentclass{article}
+\usepackage{pgf,tikz,tikzscale} 
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{multicol}
+\usepackage{enumerate}	
+\usepackage[makeroom]{cancel}
+\usepackage{graphicx,lipsum,pgfplots} 
+\usepackage{amsmath, amsthm}                 
+\usepackage[top=1in,bottom=1in, left=.5in, right=.5in] {geometry}  
+\usepackage{fancyhdr}       
+
+
+
+\pagestyle{fancy}              
+\lhead{Math 5910 \newline Exam 2}   
+\rhead{Warren Keil}
+
+
+
+
+
+
+
+\begin{document}
+\setlength{\parindent}{0cm}   %%%%%%%% KEEP THIS  for block style para. 
+
+
+
+%%%%%%%%%%%%%%%%%        1a   %%%%%%%%%%%%%%%%%%%%
+\textbf{1a.} Consider the following IVP:
+\begin{align*}
+u_{tt} &= -u_{xxxx}, \hspace{5mm} x\in \mathbb{R},\hspace{5mm} t>0 \\
+u(x,0) &= \phi(x), \hspace{5mm} u_t(x,0)= 0, \hspace{5mm} x\in\mathbb{R}.
+\end{align*}
+Find the solution \(\hat u(\xi,t) \) of the IVP in the transform domain. 
+
+\vspace{3mm}
+\textit{Solution.} Before we begin, we make the following observation. Even though we are told to find \(\hat u(\xi,t)\) which suggests we are to take the Fourier transform of the PDE, we observe that the taking a Fourier transform is appropriate because the PDE is for \(x\) on the whole real line and we have a fourth derivative of \(u\) with respect to \(x\). Fourier transform will reduce the fourth derivative with respect to \(x\) to an ODE with respect to \(t\). 
+
+\vspace{2mm}
+
+First, we take the Fourier transform of both sides of the PDE, (we notice since \(\mathcal{F}[u]= \int_{-\infty}^{\infty} u e^{i\xi t} dx \) then we can pull out a constant times \(u\)  \(\mathcal{F}[-u]= -\int_{-\infty}^{\infty} u e^{i\xi t} dx  = -\mathcal{F}[u]\))
+\begin{align*}
+&&  \mathcal{F}[ u_{tt}] &= -\mathcal{F}[u{xxxx}]    & \text{ }& \\
+\hspace{65mm} && \hat u_{tt} &=  -(i\xi)^4 \hat u		& \text{by page 118, } \mathcal{F}[u^k]=(-i\xi)^k)\hat u(\xi)& \\
+ &&  \hat u_{tt} &=  -( i^2 i^2 \xi^4) \hat u &&\\
+ && \hat u_{tt} &= -\xi^4 \hat u &\hspace{55mm} \text{ where } \hat u = \hat u(\xi, t) &
+\end{align*}
+We now have an ODE of \(\hat u(\xi,t) \) of the form 
+\[
+\hat u_{tt} + \xi^4\hat u = 0 
+\]
+To solve this, we solve the corresponding characteristic equation \( r^2+\xi^4 = 0\). We find that \(r= \pm (0 + \xi^2i) \). From elementary differential equations, we know the solution of \(\hat u \) has the form 
+\[
+\hat u(\xi,t) = a(\xi) \sin(\xi^2 t) + b(\xi) \cos(\xi^2 t) 
+\]
+Next, we take the Fourier transform of the initial condition of \(u\) to try to solve for \(a(\xi)\) and \(b(\xi)\). Thus, \( \mathcal{F} [u(x,0)] = \mathcal{F}[\phi(x)] \Rightarrow \hat u(\xi,0)=\hat \phi(\xi)\). Plugging this result into the expanded form of \(\hat u\) we find,
+\begin{align*}
+\hat u(\xi,0)=\hat \phi(\xi) &= a(\xi) \sin(\xi^2 \cdot 0) + b(\xi) \cos(\xi^2 \cdot 0) \\
+&= a(\xi)\cdot0 + b(\xi) \cdot 1 \\
+\Rightarrow  \hat \phi(\xi) &= b(\xi) .
+\end{align*}
+Therefore, we have found the solution of \(\hat u(\xi,t)\) in the transform domain, 
+\[
+\hat u(\xi,t) = \hat \phi(\xi)\cos(\xi^2 t). 
+\]
+
+\begin{flushright}
+\( \diamondsuit \)
+\end{flushright}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%        1b   %%%%%%%%%%%%%%%%%%%%
+\vspace{3mm}
+\textbf{1b.} Find the solution \(u(x,t)\). 
+
+
+\vspace{3mm}
+\textit{Solution.} To find the solution \(u(x,t)\), we will use both the convolution theorem as applied to Fourier transforms and the specific inverse Fourier transform given in the problem, \(\mathcal{F}^{-1}(\cos(\gamma \xi^2)) = \frac{\cos (\frac{x^2}{4\gamma}) + \sin(\frac{x^2}{4\gamma}) }{\sqrt{8\pi \gamma}} \). First, the convolution theorem states that \( \mathcal{F}^{-1}(\hat u(\xi) \hat v(\xi)) = \int_{-\infty}^{\infty}u(x-y)v(y)dy \). In words, this says that if we have a product of two Fourier transforms in the transform domain, then the inverse Fourier transform of this product is the convolution integral as shown above. Thus, we see that our solution \(\hat u = \hat \phi(x) \cos(\xi^2 t) = \mathcal{F}[\phi(x)]\cdot\mathcal{F}[\frac{\cos (\frac{x^2}{4t}) + \sin(\frac{x^2}{4t}) }{\sqrt{8\pi t}} ]\). So \(\hat u\) is a product of two Fourier transform and by the convolution theorem, 
+\[
+u(x,t) = \mathcal{F}^{-1}[ \hat u(\xi,t) ]=  \mathcal{F}^{-1}[ \hat \phi(\xi)\cos(\xi^2 t)] =\int_{-\infty}^{\infty} \phi(x-y) \cdot \frac{\cos (\frac{x^2}{4t}) + \sin(\frac{x^2}{4t}) }{\sqrt{8\pi t}} dy.
+\] \begin{flushright}
+\( \diamondsuit \)
+\end{flushright}
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%             2a          %%%%%%%%%%%%%%%%%%%%
+\newpage
+\textbf{2a.} Consider the IVP for the heat equation with dissipation \((b>0)\) and a heat source \( (\frac{1}{te^{bt}(x^2+1)})\) 
+\begin{align}
+u_t - ku_{xx} + bu &= \frac{1}{te^{bt}(x^2+1)}, \hspace{5mm}, x\in\mathbb{R}, \hspace{5mm} t>0,\\
+u(x,0) &=0, \hspace{5mm}x\in\mathbb{R}.
+\end{align}
+Let \(u(x,t) = e^{-bt}v(x,t)\) and derive the new IVP for \(v(x,t)\): 
+\begin{align}
+v_t -kv_{xx} &= \frac{1}{t(x^2+1)}, \hspace{5mm}, x\in\mathbb{R}, \hspace{5mm} t>0\\
+v(x,0) &= 0, \hspace{5mm} x \in \mathbb{R} 
+\end{align}
+
+\vspace{3mm}
+\textit{Solution.} Let \(u(x,t) = e^{-bt}v(x,t)\). Next, we solve for the various derivatives of \(u\). 
+\begin{align*}
+u_t&=\frac{\partial}{\partial t} [e^{-bt}v(x,t)	]& 	&	&	u_x&=\frac{\partial}{\partial x} [e^{-bt}v(x,t)	]	 \\
+&= -be^{-bt}v+ e^{-bt}v_t 	& 	&	&	&=e^{-bt}v_x	 \\
+& 	& 	&	&	&	 \\
+bu&= be^{-bt}v	& 	&	&	u_{xx}&=\frac{\partial}{\partial x}[e^{-bt}v_x]	 \\
+& 	& 	&	&	&=e^{-bt}v_{xx}	 \\
+\end{align*}
+We now observe that with our transformation from \(u\) to \(v\) transforms the equation \(u_t - ku_{xx} + bu = \frac{1}{te^{bt}(x^2+1)}\), to 
+\begin{align*}
+e^{-bt}v_t -be^{-bt}v -ke^{-bt}v_{xx}+ be^{-bt}v &= \frac{e^{- bt}}{t(x^2+1)}   &  & \\ 
+e^{bt}[e^{-bt}v_t -be^{-bt}v -ke^{-bt}v_{xx}+ be^{-bt}v] &= e^{bt} \frac{e^{- bt}}{t(x^2+1)}   &  \text{ multiply by }e^{bt}& \\ 
+v_t-\cancel{bv}-kv_{xx} + \cancel{bv} &= \frac{1}{t(x^2+1)}  &  \text{ simplify} &  \\
+v_t - kv_{xx} &= \frac{1}{t(x^2+1)} 
+\end{align*}
+We also see that since \(u(x,0)= 0\) for \(x\in \mathbb{R}\), then \(u(x,0)=0= e^{0}v(x,0) = v(x,0) \). 
+Now, we have a initial value problem for \(v\). 
+\begin{align*}
+v_t - kv_{xx} &= \frac{1}{t(x^2+1)}, \hspace{4mm} x\in\mathbb{R}, \hspace{4mm} t>0\\
+v(x,0)&= 0, \hspace{4mm} x\in\mathbb{R}.
+\end{align*}
+\begin{flushright}
+\( \diamondsuit \)
+\end{flushright}
+
+
+\newpage
+%%%%%%%%%%%%%%%%%           2b            %%%%%%%%%%%%%%%%%%%%
+\textbf{2b.} Solve the IVP (3)-(4) from part (a.) to find the solution \(v(x,t)\). 
+
+
+\vspace{3mm}
+\textit{Solution.} We see that the PDE of \(v\) is a diffusion equation with a source on an infinite spatial domain and with zero-valued initial condition. Thus we proceed by using the methods from section 2.5 and 2.1. 
+
+Let \(w(x,t;\tau)\) be a solution to the following:
+\begin{align*}
+w_t - kw_{xx} &= 0, \hspace{4mm} x\in\mathbb{R}, \hspace{4mm}t>0\\
+w(x,0;\tau)&= \frac{1}{\tau(x^2+1)}, \hspace{4mm} x\in\mathbb{R}
+\end{align*}
+By section 2.1, since we now have a pure heat equation with no source, and an initial condition \(w(x,0;\tau)=f(x;\tau)\), then we know by the methods derived in section 2.1, that \(w\) has the form, 
+\[
+w(x,t;\tau) = \int_{-\infty}^{\infty} G(x-y,t)\frac{1}{\tau(y^2+1)} dy= \int_{-\infty}^{\infty} \frac{1}{\sqrt{4\pi kt}}e^{-(x-y)^2/4kt }\frac{1}{\tau(y^2+1)} dy.
+\]
+Now, by Duhamel's principal, since our function \(v\) and \(w\) have the all the required criteria outlined in section 2.5, we know that \(v(x,t)\) has the form,
+\[
+v(x,t) = \int_0^t w(x,t-\tau;\tau) d\tau = \int_0^t \int_{-\infty}^{\infty} \frac{1}{\sqrt{4\pi k(t-\tau)}}e^{-(x-y)^2/4k(t-\tau )}\frac{1}{\tau(y^2+1)} dy d\tau.
+\]
+\begin{flushright}
+\( \diamondsuit \)
+\end{flushright}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%        2c   %%%%%%%%%%%%%%%%%%%%
+
+\textbf{2c.} Find the solution \(u(x,t)\) to the original IVP (1)-(2). 
+
+
+\vspace{3mm}
+\textit{Solution.} Since we set \(u(x,t) = e^{-bt}v(x,t)\) then it follows that 
+\begin{align*}
+u(x,t) = e^{-bt}\int_0^t \int_{-\infty}^{\infty} \frac{1}{\sqrt{4\pi k(t-\tau)}}e^{-(x-y)^2/4k(t-\tau )}\frac{1}{\tau(y^2+1)} dy d\tau.
+\end{align*}
+\begin{flushright}
+\( \diamondsuit \)
+\end{flushright}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%        3a   %%%%%%%%%%%%%%%%%%%%
+\newpage
+\textbf{3a.}Consider the following IBVP,
+\begin{align}
+u_{tt} &= c^2 u_{xx}, \hspace{5mm} x>0, \hspace{5mm} t>0\\
+u_x(0,t)&= 0, \hspace{5mm}t>0 \\
+u(x,0) &= f(x), \hspace{5mm} u_t(x,0)=g(x), \hspace{5mm} x>0.
+\end{align}
+Find the solution \(u(x,t)\). 
+
+
+\vspace{3mm}
+\textit{Solution.} We first notice that this is the wave equation on a semi infinite domain with a Neumann boundary condition and initial conditions for both \(u\) and \(u_t\). Since we are on a semi-infinite domain, we will solve a similar PDE for \(v(x,t)\) on an infinite domain and use the method of reflection to solve for \(u\). Since we have a Neumann boundary condition, we will use \textit{even} functions \(F\) and \(G\) to substitute for \(f\) and \(g\). Let \(v(x,t)\) be a solution for the following,
+\begin{align}
+v_{tt} &= c^2 v_{xx}, \hspace{5mm} x\in\mathbb{R}, \hspace{5mm} t>0\\
+v_x(0,t)&= 0, \hspace{5mm}t>0 \\
+v(x,0) &= F(x), \hspace{5mm} u_t(x,0)=G (x), \hspace{5mm} x\in\mathbb{R}.
+\end{align}
+where
+\[
+  F(x) =
+  \begin{cases}
+                                   f(x) & \text{for } x>0 \\
+                                   f(-x) & \text{for } x<0,
+  \end{cases} 
+  \hspace{10mm}
+    G(x) =
+  \begin{cases}
+                                   g(x) & \text{for } x>0 \\
+                                   g(-x) & \text{for } x<0.
+  \end{cases}
+\]
+Now we see that \(v(x,t)\) is a Cauchy problem for the wave equation with boundary condition \(v_x(0,t)=0\) and functions for both initial conditions. Thus we know by our derivations in section 2.2 that \(v\) has the form, 
+\[
+v(x,t) = \frac{1}{2}[F(x-ct)+F(x+ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} G(s) ds 
+\]
+We now make the following substitutions to change from \(F\) and \(G\) back to \(f\) and \(g\). First, we observe that since \(u\) is only defined for \(x\in (0,\infty)\), then we are only concerned about this region also. Thus we need to consider the cases when \(x>ct\) and when \(0<x<ct\).
+
+\vspace{2mm} 
+\textit{Case 1.}(\(x>ct\)) When \(x>ct\) then \(x-ct>0\) and \( x+ct>0\). Thus \(F(x)=f(x) \) and \(G(x) = g(x)\) when \(x>ct\). 
+
+\vspace{2mm} 
+\textit{Case 2.}(\(0<x<ct\)) When \(0<x<ct\) then \(x-ct<0\) but \(x+ct>0\). So \(F(x-ct) = f(ct-x)\), \(G(x-ct)=g(ct-x)\), \(F(x+ct)=f(x+ct)\), and \(G(x+ct)=g(x+ct)\). 
+
+Solving for \(f\) and \(g\) within the function \(v\), we find for \(x>ct\)
+\begin{align*}
+v(x,t) &= \frac{1}{2}[F(x-ct)+F(x+ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} G(s) ds \\
+&= \frac{1}{2}[f(x-ct)+f(x+ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} g(s) ds.
+\end{align*}
+And for the region \((0<x<ct)\), we have
+\begin{align*}
+\hspace{30mm} v(x,t) &= \frac{1}{2}[F(x-ct)+F(x+ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} G(s) ds && \\
+&=  \frac{1}{2}[f(ct-x)+f(x+ct)] + \frac{1}{2c}[ \int_{x-ct}^{0} G(\hat s) d\hat s + \int_{0}^{x+ct} G(s) ds]  &\text{   since \(x-ct<0\) and \(x+ct>0\) }& \\
+&=\frac{1}{2}[f(ct-x)+f(x+ct)] + \frac{1}{2c}[ \int_{x-ct}^{0} g(-\hat s)d \hat s+ \int_{0}^{x+ct} g(s) ds] &\text{ since }x-ct<0 & \\
+&= \frac{1}{2}[f(ct-x)+f(x+ct)] + \frac{1}{2c}[ \int_{ct-x}^{0} -g(s)ds+ \int_{0}^{x+ct} g(s) ds]&\text{  make substitution } s=-\hat s\\
+&= \frac{1}{2}[f(ct-x)+f(x+ct)] + \frac{1}{2c}[ \int_{0}^{ct-x} g(s)ds+ \int_{0}^{x+ct} g(s) ds] &\text{use \(-1\) to flip limits of integration}
+\end{align*}
+And thus, we have found the solution for \(v(x,t)\), 
+\[
+  v(x,t) =
+  \begin{cases}
+                                  \frac{1}{2}[f(x-ct)+f(x+ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} g(s) ds& \text{for } x>ct \\
+                                   \frac{1}{2}[f(ct-x)+f(x+ct)] + \frac{1}{2c}[ \int_{0}^{ct-x} g(s)ds+ \int_{0}^{x+ct} g(s) ds]  & \text{for } 0<x<ct.
+  \end{cases}   
+\]
+
+Therefore, when we restrict the spatial region to \(x>0\), then we have found the solution for \(u(x,t)\), 
+\[
+ u(x,t)=  v(x,t) =
+  \begin{cases}
+                                  \frac{1}{2}[f(x-ct)+f(x+ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} g(s) ds& \text{for } x>ct \\
+                                   \frac{1}{2}[f(ct-x)+f(x+ct)] + \frac{1}{2c}[ \int_{0}^{ct-x} g(s)ds+ \int_{0}^{x+ct} g(s) ds]  & \text{for } 0<x<ct.
+  \end{cases}   
+\]
+\begin{flushright}
+\(\qed\)
+\end{flushright}
+
+
+
+
+%%%%%%%%%%%%%%%%%        3b   %%%%%%%%%%%%%%%%%%%%
+\vspace{1mm}
+\textbf{3b.} Now consider the specific case with \( c=3, f(x) = \frac{x^2}{1+x^2}\), and \(g(x)=1-e^{-x} \). Write the solution \(u(x,t)\) in a form without integrals. 
+
+\vspace{3mm}
+\textit{Solution.} Since \(u\) is a piecewise function, we solve for each region separately. Let \(c=3\). For \(x>ct\), 
+\begin{align*}
+u(x,t) &= \frac{1}{2} \left[ \frac{(x-3t)^2}{1+(x-3t)^2}+\frac{(x+3t)^2}{1+(x+3t)^2} \right] + \frac{1}{6} \left[ \int_{x-3t}^{x+3t} 1-e^{-s}ds \right]\\
+&= \frac{1}{2} \left[ \frac{(x-3t)^2}{1+(x-3t)^2}+\frac{(x+3t)^2}{1+(x+3t)^2} \right] + \frac{1}{6} \left[ s + e^{-s} \Big|_{x-3t}^{x+3t} \right]\\
+&= \frac{1}{2} \left[ \frac{(x-3t)^2}{1+(x-3t)^2}+\frac{(x+3t)^2}{1+(x+3t)^2} \right] + \frac{1}{6} \left[  \cancel x+3t+e^{-x-3t} - \cancel x+3t -e^{3t-x} \right] \\
+&= \frac{1}{2} \left[ \frac{(x-3t)^2}{1+(x-3t)^2}+\frac{(x+3t)^2}{1+(x+3t)^2} \right] + \frac{1}{6} \left[ 6t+e^{-x-3t} -e^{3t-x} \right] 
+\end{align*}
+
+For \(0<x<ct\), 
+\begin{align*}
+u(x,t) &= \frac{1}{2} \left[ \frac{(3t-x)^2}{1+(3t-x)^2}+\frac{(x+3t)^2}{1+(x+3t)^2} \right] + \frac{1}{6} \left[ \int_{0}^{3t-x} 1-e^{-s}ds+ \int_{0}^{x+3t} 1-e^{-s}ds  \right]\\
+&= \frac{1}{2} \left[ \frac{(3t-x)^2}{1+(3t-x)^2}+\frac{(x+3t)^2}{1+(x+3t)^2} \right] + \frac{1}{6} \left[ s + e^{-s} \Big|_{0}^{3t-x}+s + e^{-s} \Big|_{0}^{x+3t}  \right]\\
+&= \frac{1}{2} \left[ \frac{(3t-x)^2}{1+(3t-x)^2}+\frac{(x+3t)^2}{1+(x+3t)^2} \right] + \frac{1}{6} \left[ (3t-x+ e^{x-3t}-1) + (x+3t + e^{-x-3t}-1)  \right]\\
+&= \frac{1}{2} \left[ \frac{(3t-x)^2}{1+(3t-x)^2}+\frac{(x+3t)^2}{1+(x+3t)^2} \right] + \frac{1}{6} \left[ e^{x-3t}+e^{-x-3t} + 6t -2   \right]
+\end{align*}
+
+Therefore, the solution of \(u(x,t)\) for the given functions \(f\) and \(g\) is 
+\[
+ u(x,t)=
+  \begin{cases}
+                                  \frac{1}{2} \left[ \frac{(x-3t)^2}{1+(x-3t)^2}+\frac{(x+3t)^2}{1+(x+3t)^2} \right] + \frac{1}{6} \left[ 6t+e^{-x-3t} -e^{3t-x} \right]  & \text{for } x>ct, \\
+                                   \frac{1}{2} \left[ \frac{(3t-x)^2}{1+(3t-x)^2}+\frac{(x+3t)^2}{1+(x+3t)^2} \right] + \frac{1}{6} \left[ e^{x-3t}+e^{-x-3t} + 6t -2   \right]& \text{for } 0<x<ct.
+  \end{cases}   
+\]
+\begin{flushright}
+\(\diamondsuit\)
+\end{flushright}
+
+Note: We verified this result by referring to the text by Andrei D. Polyanin [1]. 
+
+
+
+
+
+\newpage
+
+
+
+
+%%%%%%%%%%%%%%%%%        3c   %%%%%%%%%%%%%%%%%%%%
+\vspace{9mm}
+\textbf{3c.} Use technology to plot time snapshots at \(t=0, .5,\) and \(2\) for \( 0 \leq x\leq 10\). 
+
+\vspace{3mm}
+\textit{Solution.} We enter the piecewise function obtained in part 3b. in mathematica to make the following plot.
+
+\vspace{10mm}
+\begin{centering}
+\includegraphics[scale=1.4]{snapex2}
+\end{centering}
+
+\definecolor{ao}{rgb}{0.0, 0.5, 0.0}
+
+\begin{tcolorbox}
+\textbf{Legend:} \hspace{20mm} \text{ \color{blue}   \(t=0\) } \hspace{20mm} \text{ \color{orange}  \(t=.5\) }  \hspace{20mm} \text{ \color{ao}  \(t=2\) }
+\end{tcolorbox}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%        4a   %%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\textbf{4a.} Consider the Cauchy problem for the heat equation
+\begin{align}
+u_t&=ku_{kk}, \hspace{5mm} x\in \mathbb{R}, \hspace{5mm} t>0, \\
+u(x,0)&= \phi(x), \hspace{5mm} x\in \mathbb{R}
+\end{align}
+with \(k>0\) constant. You will be guided through the steps to show that if \(\phi(x)\) is odd, then for all \(t>0,u(x,t) \) is also an odd function of \(x\). Given that the solution to the Cauchy problem is \(u(x,t)\), show that
+\[ u(-x,t)=\frac{1}{ \sqrt{4\pi kt} } \int_{-\infty}^{\infty} \phi(y) e^{-(x+y)^2 /4kt } dy. \]
+
+\vspace{3mm}
+\textit{Solution.} Let \(u\) be a solution to (11)-(12).  By section 2.1, we know \(u\) is
+\[u(x,t)= \frac{1}{ \sqrt{4\pi kt} } \int_{-\infty}^{\infty} \phi(y) e^{-(x-y)^2 /4kt } dy.  \]
+
+We then observe the following result for \(u(x,t)\) for \(-x\), 
+\begin{align*}
+u(-x,t) &= \frac{1}{ \sqrt{4\pi kt} } \int_{-\infty}^{\infty} \phi(y) e^{-(-x-y)^2 /4kt } dy, \\
+&= \frac{1}{ \sqrt{4\pi kt} } \int_{-\infty}^{\infty} \phi(y) e^{-((-1)(x+y))^2 /4kt } dy, \\
+&=\frac{1}{ \sqrt{4\pi kt} } \int_{-\infty}^{\infty} \phi(y) e^{-((-1)^2(x+y)^2) /4kt } dy, \\
+&= \frac{1}{ \sqrt{4\pi kt} } \int_{-\infty}^{\infty} \phi(y) e^{-(x+y)^2 /4kt } dy.
+\end{align*}
+\begin{flushright}
+\(\diamondsuit\)
+\end{flushright}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%        4b   %%%%%%%%%%%%%%%%%%%%
+
+\vspace{5mm}
+\textbf{4b.} Assume \(\phi(x) \) is an odd function. Show that \(u(x,t) = -u(-x,t)\), and conclude that \(u(x,t)\) is an odd function of \(x\). 
+
+
+\vspace{3mm}
+\textit{Solution.} Suppose \(\phi(x)\) is an odd function. Then \(\phi(x)=-\phi(-x)\). Now we will use the result from (4a.) to show that \(u(x,t) = -u(-x,t)\). Notice, 
+\begin{align*}
+-u(-x,t) &= -\frac{1}{ \sqrt{4\pi kt} } \int_{-\infty}^{\infty} \phi(\hat y) e^{-(x+\hat y)^2 /4kt } d\hat y  && \\
+&= -\frac{1}{ \sqrt{4\pi kt} } \int_{\infty}^{-\infty} -\phi(-y) e^{-(x-y)^2 /4kt } dy &\text{Let } y=-\hat y &\\
+&=  -\frac{1}{ \sqrt{4\pi kt} } \int_{\infty}^{-\infty} \phi(y) e^{-(x-y)^2 /4kt } dy &\text{since } \phi(x)=-\phi(-x)\\
+&=  \frac{1}{ \sqrt{4\pi kt} } \int_{-\infty}^{\infty} \phi(y) e^{-(x-y)^2 /4kt } dy &\text{flip limits of integration}\\
+\hspace{65mm} &= u(x,t)
+\end{align*}
+Therefore, since have shown that \(-u(-x,t) = u(x,t)\), we have shown that \(u \) is an odd function of \(x\). 
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%        4c  %%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\textbf{4c.} Explain how this fact is useful when solving the PDE on the semi-infinite domain:
+\begin{align}
+u_t&=ku_{xx}, \hspace{5mm} x>0, \hspace{5mm}t>0,\\
+u(0,t) &= 0, \hspace{5mm} t>0, \\
+u(x,0)&= \phi(x), \hspace{5mm} x>0
+\end{align}
+
+
+
+
+
+\vspace{3mm}
+\textit{Solution.} First, we will note that we know how to find the solution for Cauchy heat equation,
+\begin{align*}
+u_t&=ku_{xx}, \hspace{5mm} x\in\mathbb{R}, \hspace{5mm}t>0,\\
+u(x,0)&= \phi(x), \hspace{5mm} x \in \mathbb{R} 
+\end{align*}
+We will also take note of the results of 4b, that if \(\phi(x) \) is an odd function, then \(-u(-x,t) = u(x,t) \), where \(u(x,t) \) is the solution to the Cauchy heat equation, \(u(x,t) = \int_{-\infty}^{\infty} \phi(y) G(x-y,t) dy \)
+
+\vspace{2mm} 
+Now consider the PDE we get if we create a similar PDE 
+\begin{align}
+v_t&=kv_{xx}, \hspace{5mm} x\in\mathbb{R}, \hspace{5mm}t>0,\\
+v(x,0)&= \psi(x), \hspace{5mm} x \in \mathbb{R} 
+\end{align}
+where 
+\[
+ \psi(x) =
+  \begin{cases}
+                                  \phi(x) & \text{for } x>0, \\
+                                   -\phi(-x) & \text{for } x<0 .
+  \end{cases}   
+\]
+Since the equations (16)-(17) are the Cauchy problem for the heat equation, then we know that the solution \(v(x,t)= \int_{-\infty}^{\infty} G(x-y,t)\psi(y) dy \). Then we show,
+\begin{align*}
+v(x,t) &=  \int_{-\infty}^{\infty} G(x-y,t)\psi(y) dy  \\
+&=  \int_{-\infty}^{0} G(x-y,t)\psi(y) dy+ \int_{0}^{\infty} G(x-y,t)\psi(y) dy& \text{ split up integral} \\
+&= - \int_{-\infty}^{0} G(x-\hat y,t)\phi(-\hat y) d\hat y+ \int_{0}^{\infty} G(x-y,t)\phi(y) dy& \text{since \(\phi \) is odd } \\
+&= -\int_{0}^{\infty} G(x+y,t)\phi(y) dy+ \int_{0}^{\infty} G(x-y,t)\phi(y) dy& \text{ let \(y=-\hat y\)} \\
+&= \int_{0}^{\infty} ( G(x-y,t)-G(x+y,t) )\phi(y) dy
+\end{align*}
+Thus we have re-derived the solution to the heat equation on a semi-infinite domain. We now have one subtlety to consider:
+
+Since \(\psi(x)\) is an odd function, then we have shown that \(v(x,t)\) must be an odd function of \(x\), \(-v(-x,t)=v(x,t)\). And since we are solving partial differential equations, then we have required \(v \) to be a differentiable function. Thus \(v\) should not have any jump discontinuities at \(x=0\). And thus, \(-v(-x,t)=v(x,t) \iff v(0,t)=0  \). Thus, the initial condition has fallen out of our new Cauchy problem precisely due to our requirements that \(\phi \) is odd and thus \( v\) is an odd function of \(x\). So rewriting all we have derived about \(v\), we have, 
+
+\begin{align}
+v_t&=kv_{xx}, \hspace{5mm} x\in\mathbb{R}, \hspace{5mm}t>0,\\
+v(0,t) &= 0  \hspace{5mm} t>0 \\
+v(x,0)&= \psi(x), \hspace{5mm} x \in \mathbb{R} 
+\end{align}
+And we have shown the solution to \(v\). And now since both PDEs \(v\) and \(u\) are identical except for domain, we can just restrict the solution to \(x>0\), 
+\[
+u(x,t) = \int_{0}^{\infty} ( G(x-y,t)-G(x+y,t) )\phi(y) dy
+\]
+
+\newpage
+
+References
+
+
+\vspace{4mm}
+
+
+ [1] Polyanin, Andrei D., \textit{Handbook of Linear Partial Differential Equations for Scientists and Engineers}. Washington D.C.
+ 
+ 
+ \vspace{2mm}
+ 
+  \hspace{12mm}Chapman \(\&\) Hall, 2002. Print / PDF. 
+
+
+
+
+
+\end{document}

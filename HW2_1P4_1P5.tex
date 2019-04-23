@@ -1,0 +1,199 @@
+\documentclass{article}
+\usepackage{pgf,tikz,tikzscale} 
+\usepackage{amssymb}
+\usepackage{enumerate}	
+\usepackage{graphicx,lipsum,pgfplots} 
+\usepackage{amsmath, amsthm}                 
+\usepackage[top=1in,bottom=1in, left=.5in, right=.5in] {geometry}  
+\usepackage{fancyhdr}       
+
+
+
+\pagestyle{fancy}              
+\lhead{Math 5910 \newline HW 1.4, 1.5}   
+\rhead{Warren Keil}
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+\noindent
+\textbf{Section 1.4}  
+\\
+\textbf{7.} The population density of zooplandton in a deep lake varies as a function of depth \(x>0\) ad time \(t\) (\(x=0\) is the surface). Zooplankton diffuse vertically with diffusion constant \(D\) and buoyancy effects cause them to migrate toward the surface with an advection speed of \(\alpha g\), where \(g\) is the acceleration due to gravity. Ignore birth and death rates. Find a PDE model for the population density of zooplankton in the lake, along with the appropriate boundary conditions at \(x=0\) and \(x=+\infty \). Find the steady-state population density for zooplankton as a function of depth, and sketch its graph. Note that the flux is advective and diffusive. 
+
+
+\vspace{4mm}
+\noindent
+\textit{Solution.}  Applying the conservation law \( u_t + \phi_x = f \), we first see that \(f\) must be equal to zero since we are told to ignore birth and death rates.  Our flux term \( \phi = -Du_x - cu \) since it consists of both diffusion and advection.  We subtract the advection term \(cu\) since the flow of the zooplankton is in the negative \(x\) direction. We are also given that the constant \(c=\alpha g\) where is the gravitational constant. So our model is 
+\[
+u_t = Du_{xx} + \alpha gu_x 
+\]
+Next we solve the simpler steady state case where the density has quit changing with respect to time. We also apply our boundary conditions to solve for \(u\). The equation and boundary conditions are: 
+\begin{align*}
+Du_{xx}+ \alpha gu_x &= 0, \\
+\lim_{x \rightarrow \infty} u(x) &= 0,\\
+\phi(0) &= 0.
+\end{align*}
+
+\noindent
+We first solve for \(u\) by solving the characteristic equation \( m^2 + \frac{ \alpha g}{D}m =0\). We find that \(m=0\) and \( m= -\frac{\alpha g}{D} \) Thus, \(u= A + Be^ {-\frac{\alpha g}{D}x}\). We then find that as \(x\) tends towards infinity, we get, 
+\begin{align*}
+0=\lim_{x \rightarrow \infty} u(x) &= A ,\\
+\Rightarrow A&=0.
+\end{align*}
+
+\noindent 
+Now that we have our function \(u\), we take the first and second derivatives with respect to 
+\(x\) to solve for \(\phi\). 
+\begin{align*}
+  u_x &= \frac{\partial}{\partial x} \left[  Be^ {-\frac{\alpha g}{D}x} \right] \\ 
+&=-\frac{B \alpha g}{D} e^ {-\frac{\alpha g}{D}x} \\  			
+\end{align*}
+
+\noindent
+So our equation \(Du_{x}+ \alpha gu = 0 \) becomes,
+\[
+ -(B\alpha g) e^{ {-\frac{\alpha g}{D}x} }  + (B\alpha g)e^{ {-\frac{\alpha g}{D}x} } =0
+\] 
+
+\noindent
+Since this equation is satisfied for all \(x\), we do not further solve for the constant \(B\),
+Thus, our equation is 
+\[ 
+u= Be^ {-\frac{\alpha g}{D}x}
+\] 
+\begin{flushright}
+\( \diamondsuit \) 
+\end{flushright}
+
+
+
+\newpage
+\noindent
+\textbf{11.} Muskrats were accidentally introduced in Europe in 1905 and the bilogical invasion spread approximately radially in all directions. Let \(u_f\) define a predetermined magnitude of the population density on a circle of radius \(r=r_f(t)\) as the front spreads. Use a diffusion-growth model to show that the speed of the wave front is approximately constant for large times \(t\).
+
+\vspace{2mm}
+\noindent
+\textit{Solution.} We take the given fundamental solution for the diffusion equation for a 2-dimensional radial symmetry problem and then multiply by the growth term, \( e^{\gamma t}\) to get, 
+\[
+ u(r,t) = \frac{1}{4\pi Dt}e^{-\frac{r(t)^2}{4Dt} + \gamma t}
+\]
+\noindent
+Since we want the rate of change of the radius with respect to time, we will take the log of both side and solve for \(r(t)\). 
+
+\begin{align*}
+\hspace{50mm}  4\pi Dt u &= e^{-\frac{r(t)^2}{4Dt} + \gamma t} \\
+\ln(4\pi Dt u) &= -\frac{r(t)^2}{4Dt} + \gamma t \\
+ \frac{r(t)^2}{4Dt} &= -\ln(4\pi Dt u) + \gamma t \\
+ r(t)^2 &= 4D\gamma t^2 - 4D\ln(4\pi Dt u)t   \\
+ r(t)^2 & \approx 4D\gamma t^2      \hspace{20mm}  \text{         (after a sufficiently long time \(t\)) }\\
+ r(t)&\approx 2\sqrt{D\gamma}t \\
+ \Rightarrow r'(t) &\approx 2\sqrt{D\gamma}
+\end{align*}
+
+\noindent
+Thus, we have shown that after a sufficiently long time has passed, then \(r(t)\) will be a function of just some constant times \(t\). Thus, the derivative of \(r\) with respect to \(t\) is constant. 
+
+
+
+
+
+\begin{flushright}
+\( \diamondsuit \) 
+\end{flushright}
+
+\newpage
+\noindent
+\textbf{Section 1.5} 
+
+\noindent
+\textbf{2.} Repeat the derivation in this section when the vertical motion of the string is retarded by a damping force proportional to the velocity of the string. Obtain the \textbf{damped wave equation}:
+\[
+u_{tt} = c_0(x)^2 u_{xx} -ku_t
+\]
+\vspace{2mm}
+\\ 
+\noindent
+\textit{Solution.} We start by letting \(u(x,t) \) be the displacement of the string from its resting position. Let \(\rho(x)\) be the density of the string at \(x\). Let \(T(x,t)\) be the tension of the string at position \(x\) and at time \(t\). We also make the following assumptions to simplify this problem:
+
+\begin{enumerate}
+\item The string only oscillates vertically.  
+\item The density of the string \(\rho(x) \) is constant. 
+\item The string is perfectly flexible. We do not consider the force due to resistance to bending.
+\item The horizontal tension applied to the string \(T(x,t)\) equals some constant \( \tau\). 
+\item The displacement \(u\) of the string is very small relative to length of string. This implies \(\frac{\partial}{\partial x} [u] << 1\). 
+\end{enumerate}
+
+\noindent
+To derive the wave equation, we will apply Newton's second law, \( F=ma\). On the right side of this equation we have mass times acceleration. Mass becomes the density of the string \(\rho\) times some length \(h\). We need this length \(h\) because a density without an accompanying spatial dimension is not equal to mass. Acceleration is the second derivative of the position of the string, \(u\). So \(ma = \rho \cdot h \cdot u_{tt} \).  
+
+\vspace{3mm}
+\noindent
+Next we look at the left side of the equation, the net forces on the string. We will look at some arbitrary section of string between \(x\) and \(x+h\) for some small \(h>0\). We observe that the tension \(T(x,t)\), which pulls in the direction tangential to the string, has both horizontal and vertical components. To find these component vectors we draw a horizontal line at the \(x\) value in which we are taking the derivative and take the angle \(\theta\) between the horizontal line and the tangent line.  We can see when plotting this that the horizontal components of tension are \( -T(x,t)\cos \theta(x,t) \) and \( T(x+h,t)\cos \theta(x+h,t) \) and the vertical components are \( -T(x,t)\sin \theta(x,t) \) and \( T(x+h,t)\sin \theta(x+h,t) \).
+
+\vspace{3mm}
+\noindent
+We now apply our assume that the horizontal tension applied to the string is constant, thus:
+\[
+  -T(x,t)\cos \theta(x,t) = T(x+h,t)\cos \theta(x+h,t) = \tau
+ \]
+\noindent
+Similarly, we find that the vertical forces on the string must be 
+\[
+  -T(x,t)\sin \theta(x,t) + T(x+h,t)\sin \theta(x+h,t) - Ku_t
+ \] (\textit{ Where \(Ku_x\) is the damping force due to gravity. We find that since \(Ku_t \) must have units of mass times length divided time squared, then K must have units of mass over time.}) \\
+ 
+\noindent
+With a little rearrangement of the first two vertical force terms, we find that 
+\begin{align*}
+-T(x,t)\sin \theta(x,t) + T(x+h,t)\sin \theta(x+h,t) &= -T(x,t)\sin \theta(x,t)\frac{\cos \theta(x,t)}{\cos \theta(x,t)}+ T(x+h,t)\sin \theta(x+h,t) \frac{\cos \theta(x+h,t)}{\cos \theta(x+h,t)}- Ku_t\\
+&= -T(x,t)\cos \theta(x,t)\tan \theta(x,t)+ T(x+h,t)\cos \theta(x+h,t) \tan \theta(x+h,t)- Ku_t \\
+&=  \tau \tan \theta(x+h,t) - \tau \tan \theta(x,t) - Ku_t   \\
+&= \tau(\tan \theta(x+h,t) - \tan \theta(x,t) )- Ku_t \\
+&= \tau (u_x(x+h,t) - u_x(x,t) ) - Ku_t
+\end{align*}
+\noindent 
+\textit{ (For sufficiently small h, we get that \( \tan \theta(x,t) = u_x\) as discussed in class)}
+\newpage 
+\noindent
+Putting everything together, we have \(F=ma\) becomes, 
+( we notice K has units mass/time which equals density times length over time so we let k equal the density over time portion of K. Thus, K = kh.) 
+
+\begin{align*}
+ \tau (u_x(x+h,t) - u_x(x,t) ) - Ku_t &= \rho h u_{tt} \\
+  \tau (u_x(x+h,t) - u_x(x,t) ) &= \rho h u_{tt} + khu_t \\
+ \frac{ \tau (u_x(x+h,t) - u_x(x,t) )}{h} &= \frac{\rho h u_{tt} + khu_t }{h}\\
+\lim_{h \rightarrow 0}  \frac{ \tau (u_x(x+h,t) - u_x(x,t) )}{h} &= \lim_{h \rightarrow 0} \rho  u_{tt}  \\
+\tau u_{xx} &= \rho u_{tt} + ku_t\\
+u_{xx} &= \frac{\rho}{\tau} u_{tt} + \frac{k}{\tau}u_t \\
+u_{xx} &= c_0(x)^2 u_{tt} + k_2u_t
+\end{align*}
+
+\noindent
+Where \(c_0(x) = \sqrt{ \frac{\rho}{\tau} }\) and \( k_2 = \frac{k}{\tau} \).
+Note: the reason we can let \(c_0(x) \)equal the square root of \(\frac{\rho}{\tau} \) is because we found that \(\tau\) was found to be a positive constant and \( \rho \) was found to be positive as well. 
+
+
+\begin{flushright}
+\( \blacksquare\)
+\end{flushright}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

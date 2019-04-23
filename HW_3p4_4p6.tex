@@ -1,0 +1,603 @@
+\documentclass{article}
+\usepackage{pgf,tikz,tikzscale} 
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{multicol}
+\usepackage{enumerate}	
+\usepackage{graphicx,lipsum,pgfplots} 
+\usepackage{amsmath, amsthm}                 
+\usepackage[top=1in,bottom=1in, left=1in, right=1in] {geometry}  
+\usepackage{fancyhdr}       
+
+
+
+\pagestyle{fancy}              
+\lhead{Math 5910 \newline HW: 3.4, 4.1, 4.2, 4.6 }   
+\rhead{Warren Keil}
+
+
+
+
+
+
+
+\begin{document}
+\setlength{\parindent}{0cm}   %%%%%%%% KEEP THIS  for block style para. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%      3.4     2
+\textbf{Section 3.4}
+
+\textbf{2.}  Show that the SLP
+\begin{align*}
+-y''(x) &= \lambda y(x), \hspace{4mm} 0<x<\ell, \\
+y(0)&=0,\hspace{4mm} y(\ell)=0, 
+\end{align*}
+has eigenvalues \( \lambda_n = n^2\pi^2/l^2 \) and corresponding eigenfunctions \(y_n(x) = \sin(n\pi x/l), n=1,2,\ldots \)
+
+\vspace{3mm}
+\textit{Solution.} To solve this SLP we must consider the three cases for when \(\lambda \) is positive, negative, or zero. 
+
+\textbf{Case 1: }(\(\lambda = 0\)).  Let \( \lambda = 0\). Then we have
+\begin{align*}
+y'' &= 0  \\ 
+y' &= B \\
+y&= Ax+ B
+\end{align*}
+From the initial condition we find that \(y(0) = 0 = A\cdot 0+ B , \Rightarrow B=0\). Thus we know \(y(x) = Ax\). Using the other boundary condition at \(\ell\), we find \(y(\ell) = A\cdot \ell =0 \). Since \(\ell>0 \) then \(A\) must be zero. Since this implies that \(y=0\) and is a trivial solution, then \(\lambda =0\) is not an eigenvalue. 
+
+\vspace{2mm}
+\textbf{Case 2: }(\( \lambda <0\)) Let \(\lambda = -k^2\). Then the ODE becomes and its corresponding characteristic equation are:
+ \begin{align*}
+-y'' &= -k^2y &    r^2 -k^2 &= 0 \\
+y'' - k^2y &=0 & r &= \pm k 
+\end{align*}
+Then we know from Appendix A that \(y(x) = Ae^{kx} + Be^{-kx} \). Plugging in the boundary condition at \(x=0\) we find \(y(0)= A + B, \Rightarrow B=-A\). Thus, we know that \(y = A (e^{kx}-e^{-kx} ) \). Now we use the boundary condition at \(x=\ell\) to find 
+\[y(\ell) = 0 = A \cdot(e^{k\ell} - e^{-k\ell} ). \] 
+And since we have supposed \(k \) and \( \ell\) to be positive, then \(A\) must be zero. Thus we have found that \(y=0\) is another trivial solution and so \(\lambda\text{s} <0\) are not eigenvalues. 
+
+\vspace{2mm}
+\textbf{Case 3:} (\( \lambda >0\)) Let \(\lambda = k^2 \). Then the ODE becomes \( y''+k^2y = 0\) . Then solving the characteristic equation we get \(r= \pm ik\). Thus, by Appendix A, we know 
+\[
+y= A\cos kx + B \sin kx.
+\]
+By the boundary condition at \(x=0\), we find \(y(0)=0= A \cdot 1\). So \(y= B\sin kx\). From the B.C. at \(x=\ell\) we find \(y(\ell) = 0= B \sin \ell k \). Since we are trying to find non trivial solutions, we look for the instances when \(\sin \ell k=0\). This is true precisely when \(k=\frac{n\pi}{\ell}\). Hence, \(\lambda_n = k^2=(\frac{n\pi}{\ell})^2 , n\in \mathbb{N}  \). And since this holds true for any \(B\) then we choose \(B=1\) for simplicity. Thus, 
+\begin{align*}
+ y_n(x) &=\sin(kx)= \sin \left( \frac{n\pi x}{\ell}\right),  n\in \mathbb{N},\\
+ \lambda &= \left(\frac{n\pi}{\ell}\right)^2, n\in \mathbb{N} .
+\end{align*}
+
+
+
+\begin{flushright}
+\( \diamondsuit \)
+\end{flushright}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%      3.4     4
+\newpage
+\textbf{4.} Find the eigenvalues and eigenfunctions for the following problem with periodic boundary conditions:
+\begin{align*}
+-y''(x) &= \lambda y(x), \hspace{4mm} 0<x<l, \\
+y(0)&=y(l),\hspace{4mm} y'(0)=y'(l), 
+\end{align*}
+
+
+
+
+
+\vspace{3mm}
+\textit{Solution.} We proceed by looking at three cases, when \(\lambda \) is negative, positive, and zero.
+
+\vspace{2mm}
+\textbf{Case 1:} (\(\lambda =0\)) Let \(\lambda =0\). The the ODE becomes \(y''=0\). We have shown many times that this results in \(y=Ax+B\) and \(y'=A\). Next we apply the boundary conditions and solve for \(A\) and \(B\). 
+\begin{align*}
+y(0) &= y(\ell)  &    y'(0) &= y'(\ell) \\
+A\cdot 0 +B&=  A\cdot \ell + B & A&=A   \\
+0&=A \cdot \ell & &
+\end{align*}
+Since \(\ell >0\) then \(A\) must equal zero and thus \(y=B\). So \(\lambda=0\) is an eigenvalue and the corresponding eigenfunction is \(y=B\) for any constant \(B\). (note: this still only give one eigenfunction since any other constant \(B'\) is just a multiple times \(B\) and so is not linearly independent from \(B\).) 
+
+\vspace{2mm}
+\textbf{Case 2:} (\(\lambda <0\)) Let \(\lambda = -k^2\). Then the ODE equation becomes \(-y'' = -k^2y \Rightarrow y''-k^2y=0 \). We solve this by solving its characteristic equation and find that \(r^2 = k^2 \Rightarrow r= \pm k \). From ordinary differential equations, we know this implies that \(y=Ae^{kx} + Be^{-kx}\) and \(y' = Ake^{kx} - Bke^{-kx}\). Now we notice that \(y\) is a sum of exponential functions. Since exponential functions do not exhibit periodicity, then the boundary conditions will only be met when \(A\) and \(B\) are equal to zero. Since this gives us the trivial solution we know that \(\lambda\)s\(<0\) are not eigenvalues. 
+
+\vspace{2mm}
+\textbf{Case 3:} (\(\lambda >0\)). Let \(\lambda= k^2\). Then our equation becomes \(y'' + k^2\). Then as we've shown in the previous problem by the characteristic equation, \(y= A\cos kx + B\sin kx \) and \( y'=-Ak\sin kx + Bk\cos kx \). Applying the boundary conditions, we find 
+\begin{align*}
+y(0) &= y(\ell)  &    y'(0) &= y'(\ell) \\
+ A &= A\cos k\ell+B\sin k\ell &  Bk&= -Ak\sin k\ell + Bk \cos k\ell \\
+0 &= A(\cos k\ell-1)  +B \sin k\ell & B&=-A\sin k\ell + B \cos k\ell \\ 
+& &0&= -A \sin k \ell + B(\cos k\ell-1) \\
+\end{align*}
+Now we multiply the left equation by \(-A\) and the right equation by \(B\) to get 
+\begin{align*}
+0&= A^2 (\cos k\ell -1) + AB \sin k \ell &&&    0=-AB\sin k \ell + B^2(\cos k\ell-1) \\
+\Rightarrow&  &0 &=(A^2+B^2)\cdot(\cos k \ell-1)  &&
+\end{align*}
+Since we are looking for non trivial solutions, then we are interested in the solutions that make this true for all nonzero \(A\)s, and \(B\)s. Thus this will be true when \(\cos k\ell - 1 =0 \) or when \(\cos k\ell =1\). From trigonometry, we know this is true whenever \( k\ell = 2n\pi,  n\in \mathbb{Z}\), so when \(k= \frac{ 2n\pi}\ell\). 
+
+So our eigenvalues are (since \(\lambda = k^2\))
+\[
+\lambda_n = \frac{ 4n^2\pi^2}{\ell^2} 
+\]
+And the eigenfunctions are 
+\[
+y_n = \cos \frac{ 2n\pi}\ell + \sin \frac{ 2n\pi}\ell.
+\]
+
+\begin{flushright}
+\( \diamondsuit \)
+\end{flushright}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%      3.4     11
+\newpage
+\textbf{11.} Consider the regular SLP
+\begin{align*}
+-y''+ q(x)y &= \lambda y, \hspace{4mm} 0<x<l, \\
+y(0)&=0,\hspace{4mm} y(l)=0, 
+\end{align*}
+where \(q(x)>0\) on \([0,l]\). Show that if \(\lambda\) and \(y\) are an eigenvalue and eigenfunction, respectively, then 
+\[
+\lambda = \frac{ \int_0^l (y'^2+qy^2)dx}{\|y\|^2} .
+\]
+Is \(\lambda >0\)? Can \(y(x)= \) constant be an eigenfunction? 
+
+\vspace{3mm}
+\textit{Solution.} We will solve for \(\lambda \) making use of the definition of the induced norm, \( \|x\|^2= \langle x,x\rangle = \int_0^l x x dx \). First, multiply the equation by \(y\), 
+\begin{align*}
+-y''y+q(x)y^2 &= \lambda y^2  &   \text{ } &\\
+-\int_0^l y''y dx+ \int_0^l q(x)y^2 dx&= \lambda \int_0^l y^2 dx& \text{ integrate both sides from \(0\) to \(l\)}\\
+-\left[ (y\cdot y') \Big|_0^l -\int_0^l y' \cdot y' dx \right ] + \int_0^l q(x)y^2 dx&= \lambda \int_0^l y^2 dx& \text{ use integration by parts on first term} \\
+[0-0] + \int_0^l y' \cdot y' dx + \int_0^l q(x)y^2 dx&= \lambda \int_0^l y^2 dx& \text{first term equals zero by BCs}\\
+\int_0^l  y'^2 +q(x)y^2 dx&= \lambda \int_0^l y^2 dx& \text{combine integrals since same limits of integration}\\
+\frac{\int_0^l  y'^2 +q(x)y^2 dx}{\int_0^l y^2 dx}dx&= \lambda \\
+ \frac{\int_0^l  y'^2 +q(x)y^2 dx}{\|y\|^2}&= \lambda
+\end{align*}
+We have shown the derivation of \(\lambda\). Next we observe that \(\lambda >0\). This is because we know \(y \neq 0, q>0\) since given in problem and since \(y\) cannot be the trivial solution for \(\lambda \) to be an eigenvalue. And \( \lambda \) equals a quotient on definite integrals of positive-valued functions in both the numerator and denominator. Thus \(\lambda \) must be greater than zero. And lastly, if \(y\) was a constant function, then the boundary conditions \(y(0)=0,\hspace{4mm} y(l)=0\), mean that \(y(x)=0\). But this is the trivial solution. Thus \(y\) cannot be a constant function.
+
+
+
+\begin{flushright}
+\( \diamondsuit \)
+\end{flushright}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%      3.4     12
+\newpage
+\textbf{12. } Can there be two independent eigenfunctions corresponding to a single eigenvalue for a regular SLP? Think about this question for the SLP given in Exercise 11. What about the problem given in Exercise 4?
+
+
+
+
+
+\vspace{3mm}
+\textit{Solution.} No there cannot be two independent eigenfunctions that correspond to a single eigenvalue for a regular SLP. Theorem 4.8 on pages 169 part 3 guarantees this. The theorem states that for any regular SLP, an eigenvalue  can have only a single independent eigenfunction. 
+
+
+\vspace{3mm}
+For the problem in exercise 11, we are given that it is a \textit{regular} SLP, thus we have already provided the theorem that says it cannot have more than one independent eigenfunction per eigenvalue. 
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%      4.1      1
+\newpage
+\textbf{Section 4.1}
+
+
+\textbf{1.} In the heat flow problem (4.1)-(4.3) take \(k=1, l =\pi,\) and \(f(x) = 0\) if \(0<x<\pi/2\), \(f(x)=1 \) if \( \pi/2 <x<\pi\). Find an infinite series representation of the solution. Use the first four terms in the series to obtain an approximate solution, and on the same set of coordinate axes sketch several time snapshots of the approximate temperature distribution in the bar in order to show how the bar cools down. Estimate the error in these approximate distributions. 
+
+
+
+
+\vspace{3mm}
+\textit{Solution.} The heat flow problem referred to with the modification is
+\begin{align}
+u_t&=u_{xx}, \hspace{4mm} 0<x<\pi, \hspace{4mm}t>0, \\
+u(0,t)&=u(\pi,t) =0, \hspace{4mm}t>0, \\
+u(x,0)=0,  \hspace{4mm} 0<x<\pi/2, \hspace{4mm} u(x,0)&= 1, \hspace{4mm} \pi/2 < x<\pi.
+\end{align}
+
+First, assume \(u(x,t)= y(x)g(t)\). Then equation (1) becomes \(y(x)g'(t) = y''(x)g(t)\) or \(\frac{g'(t)}{g(t)} = \frac{y''(x)}{y(x)}\). It follows that this can only be true if this equation is also equal to some constant \(-\lambda\). So we have deduced that \(\frac{g'(t)}{g(t)} = \frac{y''(x)}{y(x)}=-\lambda \) which implies, 
+\[
+g'(t) = -\lambda g(t), \hspace{34mm}  y''(x) = -\lambda y(x).
+\]
+Solving the equation for \(g\), we get
+\begin{align*}
+g' &= -\lambda g \\
+g +\lambda g &= 0   &   \text{use integrating factor}\\
+\int \frac{d}{dt}[ ge^{\lambda t}] dt&= \int dt \\
+ge^{\lambda t} &= A\\
+g&= Ae^{-\lambda t} 
+\end{align*}
+Next, to solve for \(y\) we have the equation \(y'' + \lambda y = 0\). We notice that this will give different solutions of \(y\) depending on whether \(\lambda \) is zero, negative, or positive. 
+
+
+\vspace{4mm}
+\textbf{Case 1:} (\(\lambda = 0\)) Let \(\lambda=0\). Then our equation is \(y''= 0\). Then we have shown many times that this results in our solution being \(y=Ax+B\). When observing the boundary condition \(u(0,t)=0\), we observe that \( y(0)g(t)=0, t>0\). Since this is true for all \(t>0\) then \(y(0)=0\). 
+A similar argument is made showing \(y(\pi)=0\). So \(y(0)=0 \Rightarrow B=0\). So \(y=Ax\). And \(y(\pi)=0 \Rightarrow A=0\). Thus \(\lambda=0\) gives us the trivial solution \(y=0\) and hence, it is now an eigenvalue. 
+
+
+\vspace{4mm}
+\textbf{Case 2:}(\(\lambda <0\)) Let \(\lambda = -k^2\). Then the equation becomes \(y''+k^2y=0\). Solving the characteristic equation gives us \(r=\pm k\) which implies \(y=Ae^{kx}+Be^{-kx}\). Using the boundary conditions we find \(y(0)=0=A+B, \Rightarrow B=-A\).  So \(y= A(e^{kx}-e^{-kx})\). Since \(y(\pi)=0 \) then \(0 = A(e^{k\pi}-e^{-k\pi} \), thus \(A=0\) since \( e^{k\pi}-e^{-k\pi}>0, \hspace{4mm}  \forall k>0\). Therefore, \(\lambda <0\) gives another trivial solution and thus it does not generate any eigenvalues. 
+
+
+\newpage
+\textbf{Case 3:} (\( \lambda >0\)) Let \(\lambda = k^2\). Then the equation for \(y\) becomes \(y''+k^2y=0\). From solving the characteristic equation, we find the \(r=\pm ik\) which means that \( y= A\cos kx + B\sin kx\). The boundary condition give us \(y(0)=0=A\). So \(y=B\sin kx\). And \(y(\pi)=0=B\sin k\pi\). Since we want non-trivial solutions, we solve for \(\sin kx=0\) which is true precisely when \(k\pi= n\pi \) for \( n \in \mathbb{Z}\). Since \(k\) is positve then our solution is reduced to \(k= n \) for \( n \in \mathbb{N}\). So the eigenvalues are \(\lambda = n^2\) and the corresponding eigenfunctions are \(y_n= \sin n \pi \) 
+
+
+Putting the solutions together we have 
+\[
+u(x,t)=A_n \sin n \pi e^{-n^2  t}.
+ \]
+ 
+ 
+To satisfy the initial condition, we need for \(u(x,0)=0 \) when \(x \in (0,\pi/2)\) and \(u(x,0) = 1 \) when \(x \in (\pi/2,\pi)\). Thus by chapter 3, using the Fourier method, we know
+\begin{align*}
+u(x,0) = 1 &= \sum_{n=1}^\infty A_n \sin n x \\
+\Rightarrow A_n &= \frac2\pi \int_{\pi/2}^\pi \sin nx dx  \\
+&= \frac2{n\pi}[ \cos n\pi/2 - \cos n\pi ]  \\
+\end{align*}
+And we note the fact that the reason we only used the interval between \( \pi/2 \) to \( \pi\) is because the other interval equals zero for all \(n\). Now we can write the final solution, 
+\begin{align*}
+u(x,t) &= \sum_{n=1}^\infty A_n \sin n x e^{-n^2 t} \\
+A_n&= \frac2{n\pi}[ \cos n\pi/2 - \cos n\pi ].
+\end{align*}
+Using mathematica, we plot this function for n=4. Since mathematica does not save the plot legend, we note the tallest curve is at t=0, and every next smaller curve is for t increase by .5 up to t=2.5. To estimate the error, we have coded a similar function \(v(x,t)\) but with way more terms. We then let another function \(w(x,t)=u(x,t)-v(x,t)\). Currently mathematica is still computing but if it finishes I will post the plot of the estimated error.  
+
+
+
+\vspace{9mm}
+
+\includegraphics[scale=.5]{sepvarplot.png} 
+\includegraphics[scale=.7]{sepvartime.png} 
+
+\newpage
+
+We made the following pointwise error plot to show the actual less the approximation. 
+
+\includegraphics[scale=1.35]{slppoint.png}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%      4.1      4
+\newpage
+\textbf{4. } The initial boundary value problem for the damped wave equation, 
+\begin{align}
+u_{tt} + ku_t &= c^2u_{xx}, \hspace{4mm} 0<x<1, \hspace{4mm} t>0,\\
+u(0,t) &= 0, \hspace{4mm} u(l,t)=0, \hspace{4mm} t>0,\\
+u(x,0) &=f(x),\hspace{4mm}u_t(x,0)=0, \hspace{4mm}0<x<l,
+\end{align}
+governs the displacement of  a string immersed in a fluid. The string has unit length and is fixed at its ends; its initial displacement is \(f\), and it has no initial velocity. The constant \(k\) is the damping constant. Use separation of variables to find the solution in the case \(k<2\pi c\).
+
+
+
+
+\vspace{3mm}
+\textit{Solution.} We first assume that \(u\) can be separated, \(u(x,t) = y(x)g(t)\). Then equation (4) becomes 
+\begin{align*}
+yg'' + kyg' &= c^2 y'' g \\
+\frac{g''}{c^2 g} + \frac{k g'}{c^2 g} &= \frac{y''}{y} = -\lambda 
+\end{align*}
+We now have two SLPs to solve
+\begin{align*}
+\frac{g''}{c^2 g} + \frac{k g'}{c^2 g} &= -\lambda &    \frac{y''}{y} &= -\lambda \\
+g'' + kg' +\lambda c^2 g &= 0 &  y'' +\lambda y  &=0 
+\end{align*}
+We will now work through cases for different \(\lambda\). 
+
+\textbf{Case1: (y)} Let \( \lambda = 0\). Then \(y\) must equal \(ax+b\). Since \(u(0,t)=0\) then \(y(0) = 0\). Thus \(b=0\). Thus \(y=ax\). And \(y(l)=0 = al\) implies \(a=0\) and the solution is trivial. 
+
+\textbf{Case2: (y)} Let \(\lambda=-n^2\) Then \(y= ae^{nx} + be^{-nx} \) by steps previously shown in this paper. So \(y(0) = 0=a+b\). Thus \(y=a(e^{nx}-e^{-nx})\).  And \(y(l) = 0 =a (e^{nl}-e^{-nl} )\). Thus \(a=0\) and the solution is trivial. 
+
+\textbf{Case3 : (y)} Let \(\lambda = n^2\). Then we have already shown that \(y= a\cos nx + b \sin nx \).  And \(y(0) =0 = a\cdot1\). So \( y= b\sin nx\). And \(y(l)=0 = b \sin nl\) implies that  \( n = \pi  \) 
+
+Next, solving for \(g\) we find solve the characteristic equation for positive lambdas (\(\lambda = n^2\)) to find 
+\[
+r = -\frac k2 \pm \sqrt{k^2 - 4c^2n^2\pi^2} 
+\]
+Since we are given that \(k<2\pi c\) then the quantity in the radicand is less than zero. Thus it follows that  \(g\) has form 
+\[
+g_n(t) = A_n e^{-kt/2}\cos t\sqrt{k^2 - 4c^2n^2\pi^2}  + B_ne^{-kt/2} \sin  t\sqrt{k^2 - 4c^2n^2\pi^2} 
+\]
+Putting solutions together we have 
+\[
+u_n(x,t) = \sum_{n=1}^\infty (A_n e^{-kt/2}\cos t\sqrt{k^2 - 4c^2n^2\pi^2}  + B_ne^{-kt/2} \sin  t\sqrt{k^2 - 4c^2n^2\pi^2} ) \sin n\pi x 
+\]
+
+Next, we apply the initial condition to find, 
+\[
+u(x,0)=  \sum_{n=1}^\infty A_n \sin n\pi x =f(x)
+\]
+From Chapter 3 we know
+\[
+A_n = \int_0^1 f(x) \sin n\pi x dx 
+\]
+Now, applying the initial condition for \(u_t\) we get
+\[
+u_t(x,0) =0=  \sum_{n=1}^\infty(-\frac k2 A_n +  \sqrt{k^2 - 4c^2n^2\pi^2} B_n \cos( 0 \cdot \sqrt{k^2 - 4c^2n^2\pi^2})\sin n\pi x    ) 
+\]
+
+Simplify out the zeros and one terms this becomes
+\[
+( \sqrt{k^2 - 4c^2n^2\pi^2} B_n - \frac k2 A_n )\sin n\pi x = 0 
+\]
+
+\newpage 
+Continuing with this calculation we get 
+
+
+\begin{align*}
+\sqrt{k^2 - 4c^2n^2\pi^2} B_n  &= \frac k2 A_n\\
+B_n &= \frac{k}{2\sqrt{k^2 - 4c^2n^2\pi^2}} \int_0^1 f(x) \sin n\pi x
+\end{align*}
+
+Therefore we now have the whole solution
+\begin{align*}
+u(x,t) &=  \sum_{n=1}^\infty (A_n e^{-kt/2}\cos t\sqrt{k^2 - 4c^2n^2\pi^2}  + B_ne^{-kt/2} \sin  t\sqrt{k^2 - 4c^2n^2\pi^2} ) \sin n\pi x \\
+A_n &= \int_0^1 f(x) \sin n\pi x dx \\
+B_n &= \frac{k}{2\sqrt{k^2 - 4c^2n^2\pi^2}} \int_0^1 f(x) \sin n\pi x
+\end{align*}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%      4.2     1
+\newpage
+\textbf{Section 4.2}
+
+
+\textbf{1. } Find an infinite series representation for the solution to the wave problem
+\begin{align*}
+u_{tt} &= c^2u_{xx},\hspace{4mm}0<x<l,\hspace{4mm}t>0,\\
+u(0,t) &= u_x(l,t) = 0, \hspace{4mm}t>0,\\
+u(x,0)&=f(x), \hspace{4mm} u_t(x,0)=0,\hspace{4mm} 0<x<l. 
+\end{align*}
+Interpret this problem in the context of waves on a string. 
+
+
+
+
+\vspace{3mm}
+\textit{Solution.}  We follow the same procedure and suppose that \(u=y(x)g(t)\). 
+
+Through the same steps as show earlier, we find that the only lambdas that produce meaningful solutions are \(\lambda >0\). So let \( \lambda = k^2\). 
+
+The PDE then will become the two equations 
+\[
+g'' + c^2k^2g=0  \hspace{6mm} y''+k^2 y = 0 
+\]
+It follows that \(y= A\cos kx + B\sin kx\). The boundary conditions show that \(y(0)=A\). So \(y=B\sin kx\). 
+And we also know \(y'(l) = kB \cos kl = 0\) implies that \( k= \frac{\pi + 2n\pi}{2l} \) for \( n=0,1,...\). The eigenvalues are \(\lambda=  (  \frac{\pi + 2n\pi}{2l} )^2 \) 
+
+Next, solving for \(g\) we find from the characteristic equation that \(g\) has the form, 
+\[ g = A\cos kct + B \sin kct \]
+
+Plugging in for k we get
+\[
+g_n = A_n \cos t\frac{\pi + 2n\pi}{2l} + B_n\sin t\frac{\pi + 2n\pi}{2l} 
+\]
+Thus it follows 
+\[
+u(x,t)= \sum_{n=1}^\infty (A_n \cos t\frac{\pi + 2n\pi}{2l} + B_n\sin t\frac{\pi + 2n\pi}{2l} )\sin x\frac{\pi + 2n\pi}{2l} 
+\]
+
+Next we apply the initial conditions\[
+u(x,0)= f(x) \sum_{n=1}^\infty A_n \sin x\frac{\pi + 2n\pi}{2l} \]
+
+It follows from the formula in chapter 3, 
+
+\[
+A_n = \frac 1{\| \sin x\frac{\pi + 2n\pi}{2l}\|^2 } \int_0^l f(x)  \sin x\frac{\pi + 2n\pi}{2l} dx. 
+\]
+
+From the IC of \(u_t\) we find
+\[
+u_n(x,0) =  \sum_{n=1}^\infty B_n(\frac{\pi + 2n\pi}{2l} \cos(0))  \sin x\frac{\pi + 2n\pi}{2l} = 0
+\]
+We easily see that this only is true if \[
+B_n = 0  \hspace{1in} \forall n\]
+
+Therefore our final solution is 
+\begin{align*}
+u(x,t) = \sum_{n=1}^\infty (A_n \cos t\frac{\pi + 2n\pi}{2l} )\sin x\frac{\pi + 2n\pi}{2l} \\
+A_n  = \frac 1{\| \sin x\frac{\pi + 2n\pi}{2l}\|^2 } \int_0^l f(x)  \sin x\frac{\pi + 2n\pi}{2l} dx. 
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%      4.6     1
+\newpage
+\textbf{Section 4.6}
+
+
+\textbf{1. } Use Duhamel's principle as formulated for the wave equation in Section 2.5 to find the solution to 
+\begin{align*}
+u_{tt} - c^2u_{xx} &= f(x,t), \hspace{4mm} 0<x<\pi,\hspace{4mm}t>0,\\
+u(0,t) = u(\pi,t)&=0,\hspace{4mm}t>0,\\
+u(x,0) = u_t(x,0) &=0, \hspace{4mm} 0<x<\pi.
+\end{align*}
+Next, use the eigenfunction method to solve the problem. Hint: In the eigenfunction method you will have to solve a second-order inhomogeneous ODE; (use variation of parameters). 
+
+
+
+
+\vspace{3mm}
+\textit{Solution.} We first use the method of using Duhamel's Principal to solve this PDE. So let \(w(x,t,\tau)\) be a solution to the following,
+
+\begin{align*}
+w_{tt}-c^2w_{xx} &= 0\\
+w(0,t,\tau)&= w(\pi,t,\tau)=0, \hspace{3mm} t>0  \\
+w(x,0;\tau) &=0, \hspace{3mm} w_t(x,0;\tau)=f(x;\tau), \hspace{3mm} t>0
+\end{align*}
+
+
+Suppose \(w\) is separable, that is \( w= y(x;\tau)g(t;\tau) \). Then the PDE becomes, 
+\begin{align*}
+g''y-c^2gy'&'=0 \\
+\frac{g''}{c^2g} &=  \frac{y''}{y}=-\lambda  \\
+g''+c^2\lambda g= 0&  \hspace{6mm}  y''+\lambda y = 0
+\end{align*}
+Solving the SLP for \(y\), from the characteristic equation we get
+\begin{align*}
+r^2 &=    &     & 
+\end{align*}
+Previously in our notes, we showed that only \(\lambda >0\) produces meaningful solutions for this particular SLP. Thus let \(\lambda=k^2 \). So solving the SLP for \(y\), from the characteristic equation we get
+\begin{align*}
+r^2 &= -k^2   & \Rightarrow    y=&A\cos kx + B\sin kx  \\
+r&= \pm k i & & 
+\end{align*}
+Then from the boundary condition for \(w\) we get \( y(0;\tau)=0 =A\) . So \(y=B\sin kx\). And from \(y(\pi;\tau)=0 = B\sin k\pi\) . We see that this is true when \(k= n\). So the eigenvalues are \(n^2\) for \(n=1,2,3\ldots\). And the eigenfunctions are \(y_n(x,t;\tau)= \sin nx \) 
+
+Next, to solve for \(g\) we solve the characteristic equation for positive lambdas. Let \(\lambda = k^2\). We find 
+\begin{align*}
+r&= \pm ick  \\
+\Rightarrow g&= A\cos kt + B\sin kt \\
+g_n&= A_n\cos ckt + B_n \sin ckt 
+\end{align*}
+Putting the solutions back together we get 
+\[w_n(x,t;\tau) = (A_n\cos ckt + B_n \sin ckt)\sin nx.   \]
+
+Next, from the initial conditions we get  (note: we switch from \(k\) to \(n\) below. )
+\begin{align*}
+w(x,0;\tau )=\sum_{n=1}^\infty A_n \sin nx = 0 \\
+\Rightarrow A_n=0,  \forall n \in \mathbb{N} 
+\end{align*}
+Thus, 
+\[w_n(x,t;\tau) = \sum_{n=1}^\infty ( B_n \sin nct)\sin nx   \]
+
+Then we take the partial derivative with respect to \(t\) to find 
+
+\begin{align*}
+w_t(x,0;\tau) = f(x,0;\tau) &= \sum_{n=1}^\infty ( cn B_n \cos 0)\sin nx \\
+\int_0^\pi f(x,0;\tau)\sin mx dx&=\int_0^\pi \sum_{n=1}^\infty cnB_n\sin nx \sin mx dx \\
+\int_0^\pi f(x,0;\tau)\sin nx dx&= \frac{\pi}{2} \cdot cn B_n \\
+B_n &=\frac{2}{\pi cn}  \int_0^\pi f(x,0;\tau)\sin nx dx 
+\end{align*}
+
+Again, reiterating the solution of \(w\), 
+\begin{align*}
+w_n(x,t;\tau)&= \sum_{n=1}^\infty ( B_n \sin nct)\sin nx \\
+B_n &=\frac{2}{\pi cn}  \int_0^\pi f(x,0;\tau)\sin nx dx 
+\end{align*}
+
+Then by Duhamel's principal, we know the solution of \(y\) is given by 
+
+\begin{align*}
+u_n(x,t;\tau)&= \int_0^t w(x,t-\tau;\tau) d\tau\\
+&= \int_0^t  \sum_{n=1}^\infty ( B_n \sin nct-\tau)\sin nx d\tau. 
+\end{align*}
+
+
+\newpage
+
+Next we will solve this by the eigenfunction method.  
+First we solve the homogeneous problem for the eigenvalues. Suppose \(u=y(x)g(t)\). We have shown in this problem that the PDE becomes
+\[
+g'' + c^2\lambda g = 0  \hspace{6mm}  y''+\lambda = 0
+\]
+We will only solve the SLP for \(y\). We also showed that the only eigenfunctions are for \(\lambda>0\). And when we let \(\lambda = k^2\) we showed that the eigenvalues were \(\lambda = k^2 \) for \( k=1,2,3,... \) and 
+\[
+y_n= \sin nx   \hspace{6mm}  
+\]
+
+Next, we assume that the solution to the inhomogeneous PDE is 
+\[
+u(x,t)=\sum_{n=1}^\infty g_n(t) \sin nx  \hspace{1in} \text{ for some \(g_n(t)\)s }
+\]
+If follows then that our PDE becomes
+\begin{align*}
+\frac{ \partial^2}{\partial t^2} \sum_{n=1}^\infty g_n(t) \sin nx - c^2 \frac{\partial^2}{\partial x^2}\sum_{n=1}^\infty g_n(t) \sin nx &= \sum_{n=1}^\infty f_n(t) \sin x &\text{ since } f(x,t) = \sum_{n=1}^\infty f_n(t)\sin nx\\
+\sum_{n=1}^\infty g''_n(t) \sin nx-n^2c^2 \sum_{n=1}^\infty g_n(t) \sin nx - \sum_{n=1}^\infty f_n(t)\sin nx&=0 \\
+\sum_{n=1}^\infty g''_n(t) \sin nx-c^2g_n(t) \sin nx - f_n(t)\sin nx&=0 \\
+\sum_{n=1}^\infty (g''_n(t) +n^2c^2g_n(t) - f_n(t))\sin nx&=0
+\end{align*}
+
+
+Now we have the ODE to solve
+\[g''_n(t) +n^2c^2g_n(t) = f_n(t) \]
+
+To solve this we first solve the homogeneous problem and then use variation of parameters to solve the non-homogeneous problem. From the characteristic equation of \(g\). 
+\begin{align*}
+r^2&= -n^2c^2  &               g_n &= A\cos nct + B\sin nct                     \\
+r&= \pm cni &                    &
+\end{align*}
+Next we compute the Wronskian
+\[W_g(t) =nc \cos^2 nct \cos nct + nc\sin^2 nct  \]
+
+Next, using the formula for variation of parameters, we find
+\begin{align*}
+g_P(t) = g_2 \int_0^\pi \frac{g_1 f(s)}{W(s)} ds-g_1 \int_0^\pi \frac{g_2 f(s)}{W(s) } ds\\
+\text{ where } g_1 = A \cos nct, \hspace{5mm}  g_2 = B\sin nct 
+\end{align*}
+
+So the function \(g= g_1+g_2 + g_P\) 
+
+\[ g_n(x,t) = A\cos nct + B\sin nct + g_P \]
+\newpage
+Next we find \(g_n(0) \). 
+
+\begin{align*}
+u(x,0) =  \sum_{n=1}^\infty g_n(0) \sin nx  &=0\\ 
+\sum_{n=1}^\infty ( A_n \cos 0 + B\sin 0 + 0 - A\int_0^\pi  0    )\sin nx      &=0 \\ 
+\sum_{n=1}^\infty ( A_n \sin nx &=0
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,275 @@
+\documentclass{article}
+\usepackage{pgf,tikz,tikzscale} %pgf plot
+\usepackage{amssymb}
+\usepackage{enumerate}	% lets you make numbered or lettered lists.
+\usepackage{graphicx,lipsum,pgfplots} %this package lets us use images.  gives us theorem environment.
+\usepackage{amsmath, amsthm}                 %We use these virtually every time.
+\usepackage[top=1in,bottom=1in, left=1in, right=1in] {geometry}   % margin setting
+\usepackage{fancyhdr}       % i.e. fancy header
+
+
+
+\pagestyle{fancy}              
+\lhead{Math 5910 \newline HW 1.1, 1.2, 1.3}   %  
+\rhead{Warren Keil}
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+\noindent
+\textbf{Section 1.1}  
+\\
+\textbf{3.} Find a function \(   u=u(x,t)    \) that satisfies the PDE 
+\[
+u_{xx}=0, 	 0<x<1 , t>0, 
+\]
+subject to boundary conditions 
+\[
+u(0,t)=t^2,  u(1,t)=1 , t>0. 
+\]
+\textit{Solution.}  We first observe that since \(u_{xx}=0\), then \( u_{x} = \int u_{xx} dx = \int 0 dx \). Thus we know that
+ \(u_{x}= \phi(t) \) for some function \( \phi \). Likewise, we also know that \(u = \int u_{x} dx= \int \phi(t) dx\). Thus, \( u = x\phi(t) + \psi(t) \). We now can use the boundary conditions to solve for \(\phi \) and \( \psi\). Note, we will solve the left string of equalities first and then use the results to solve the right hand side. 
+
+\begin{align*}
+  u(0,t) = t^2=& (0) \cdot \phi(t) + \psi(t)       &         u(1,t) = 1 =&  (1) \cdot \phi(t) + \psi(t)    \\
+  t^2 =&  \psi(t)    &      1 =&  \phi(t)  + t^2 \\
+  & &    1- t^2 &= \phi(t)
+\end{align*}
+
+\noindent
+Thus, our final solution for \(u\) is \( u(x,t) = x\cdot (1-t^2) + t^2 \). 
+\begin{flushright}
+\( \diamondsuit \) 
+\end{flushright}
+
+\noindent
+\textbf{6.} Find the general solution to the equation \(u_{xt} +3u_{x} = 1\). Hint: Let \(v=u_{x} \) and solve the resulting equation for \(v\); then find \(u\). 
+
+\vspace{2mm}
+\noindent
+\textit{Solution.} As suggested, we first let \(v=u_x \). Our equation then becomes \(v_t +3v = 1\). Now that our problem has temporarily been reduced to an ODE, we will solve it using an integrating factor, \(\mu=e^{3t}\). 
+
+\begin{align*}
+\mu \cdot ( v_t + 3v &= 1 )  \\
+\int \frac{d}{dt}[ ve^{3t}] dt &= \int e^{3t} dt  \\
+ ve^{3t} &= \frac{1}{3}e^{3t} + \phi_{1}(x)  \\
+ v &= \frac{1}{3} + \phi_{1}(x)e^{-3t}
+\end{align*}
+
+
+
+
+
+
+\noindent
+Changing back to \(u_x\), we have \( u_x = \frac{1}{3} + \phi_{1}(x)e^{-3t} \). We now integrate with respect to 
+\(x\) to find \(u\). 
+
+\begin{align*}
+u &= \int \frac{1}{3} + \phi_{1}(x)e^{-3t} dx  \\
+u &= \frac{1}{3}x + \phi_2(x)e^{-3t} +\psi(t) 
+\end{align*}
+We note the fact that since \( \phi_1 \) was an arbitrary function of \(x\), then \( \phi_2	\) is just another arbitrary function of \(x\). Technically, \(\phi_2\) is the antiderivative of \(\phi_1\), but since they are arbitrary, we forgo the notation and just leave them as functions of \(x\). 
+\begin{flushright}
+\( \diamondsuit \) 
+\end{flushright}
+
+\newpage   
+
+\noindent
+\textbf{A.} For each of the following equations, state the order and whether it is nonlinear, linear inhomogeneous, or linear homogeneous; provide reasons for your answers. 
+\vspace{3mm}
+\\
+\noindent
+( a.) \(  u_t-u_{xx} + 1 = 0         \). Linear non-homogeneous, second order. Every \(u\) term is to the first power. We have one term that does not contain \(u\) or one of its derivatives.\\
+
+\noindent
+( b.) \(  u_t-u_{xx} + xu = 0          \). Linear homogeneous, second order. Every term contains a \(u\) or one of its derivatives and they are all to the first power. \\ 
+
+\noindent
+( c.) \(   u_t-u_{xxt} + uu_x = 0         \). Nonlinear, third order.  The term \( uu_x\) is non linear.\\
+
+\noindent
+( d.) \(   u_{tt}-u_{xx} + x^2 = 0         \). Linear non-homogeneous, second order.  The \(u\) terms are to the first power but the \(x^2\) term does not contain a \(u\).  \\
+
+\noindent
+( e.) \(    u_{x}+ e^yu_{y} = 0        \). Linear homogeneous, first order. Every term contains a \(u\) and they are all to the first power. \\
+
+\noindent
+( f.) \(     u_t+u_{xxxx} + \sqrt{1+u} = 0       \). Non-linear, forth order. The term \(\sqrt{1+u} \) is to the \( \frac{1}{2} \) power. 
+\begin{flushright}
+\( \diamondsuit \) 
+\end{flushright}
+
+\vspace{6mm}
+\noindent
+\textbf{Section 1.2} 
+
+\noindent
+\textbf{3.} Find the general solution of the advection-decay equation (1.12) by transforming to the characteristic coordinates  \( \xi = x -ct, \tau=t\). 
+\vspace{2mm}
+\\ 
+\noindent
+\textit{Solution.} The advection decay equation is \(u_t+cu_x = -\lambda u \). We solve by transforming to the characteristic coordinates. Thus, \( u(x,t)\) becomes \( U(\xi,\tau) \). And \(u_t \) becomes \(\frac{\partial}{\partial t}U = \frac{\partial U}{\partial \xi } \cdot \frac{\partial \xi}{\partial t} + \frac{\partial U}{\partial \tau } \cdot \frac{\partial \tau}{\partial t} = -cU_{\xi} + U_{\tau} \). Likewise, we find that \( \frac{\partial}{\partial x} U = \frac{\partial U }{\partial \xi}  \cdot \frac{\partial \xi }{\partial x } = U_{\xi}   \). Thus, our original equation \( u_t+cu_x = -\lambda u  \) becomes, \( U_t+cU_x = -\lambda U \) which becomes \(-cU_{\xi} + U_{\tau} + cU_{\xi} = -\lambda U  \). Hence, now we have an ordinary differential equation which we will solve by an integrating factor \(\mu\). Since our equation is now \( U_{\tau} + \lambda U = 0\), then it follows that the integrating factor, \(\mu = e^{\lambda \tau} \). Thus, 
+\begin{align*}
+U_{\tau}e^{\lambda \tau} +Ue^{\lambda \tau}  &= 0 \\
+\frac{\partial}{\partial \tau}  Ue^{\lambda \tau} &= 0 \\
+\int \frac{\partial}{\partial \tau}  Ue^{\lambda \tau} d\tau &= \int d\tau  \\
+U e^{\lambda \tau} &= \phi(\xi) \\
+U &= \phi(\xi)e^{-\lambda \tau} . 
+\end{align*}
+
+\noindent
+And when we convert back to \(x \) and \(t\), we get 
+\[
+u(x,t)= \phi(x-ct)\cdot e^{-\lambda t}.
+\]
+\begin{flushright}
+\( \diamondsuit \) 
+\end{flushright}
+
+
+
+
+\newpage
+\noindent
+\textbf{6.} Solve the initial boundary value problem. 
+\[ 
+u_t + cu_x = -\lambda u,   \hspace{3mm}  x,t>0  
+\]
+\[ 
+u(x,0)=0,   \hspace{2mm}  x>0,  \hspace{2mm}   u(0,t)=g(t),  \hspace{2mm}  t>0 
+\]
+
+\vspace{2mm}
+
+
+
+\noindent
+\textit{Solution.} As suggested in the text, we will consider the cases when \( x<ct \) and \( x>ct \) separately. So consider the case when \( x>ct\). We have already shown in the previous problem that the general solution to this problem has the form \(u(x,t)= \phi(x-ct) e^{-\lambda t} \)   Since we are given \(u(x,0)=0\), then this implies \( 0 = \phi(x) \),  \(\forall x >0 \). And since \(\phi(x)=0, \Rightarrow \phi(x-ct) =0\). This implies that \(u(x,t)=0\) whenever \(x>ct\).   \\
+\noindent
+For the other case when \(x < ct\) we apply the boundary condition and solve for \(\phi\).
+\begin{align*}
+    &  &    u(x,0)=g(t)&=\phi(0-ct) e^{- \lambda t} &      &   \\
+          &  &     \phi(-ct)&= g(t)e^{ \lambda t}    &    &   \\
+          &   \text{Let \(t_2=-ct\)}    &    \phi(t_2)&=g(\frac{-t_2}{c})e^{\frac{-\lambda t_2}{c}  }    &    &   \\
+\end{align*}
+
+\noindent
+Now we have solved for \(phi\) in terms of some function of \(t\). Now we plug in \(x-ct\) to \(\phi\) and get our final function \(u\). 
+
+\begin{align*}
+u(x,t) &=  \phi(x-ct)e^{-\lambda t}\\
+&= g( \frac{ ct - x }{c} )e^{\frac{ -\lambda(x-ct)}{c}}  e^{ \frac{-\lambda ct}{c}} \\
+&= g( \frac{ ct - x }{c} )e^{\frac{ -\lambda x + \lambda ct - \lambda ct}{c}}  \\
+&= g(t - \frac{x}{c}) e^{\frac{-\lambda x}{c}}
+\end{align*}
+\begin{flushright}
+\( \diamondsuit \) 
+\end{flushright}
+
+\newpage
+\noindent
+\textbf{10.} The density of cars on a busy one-lane freeway with no exits and entrances is \(u=u(x,t)\) cars per miles. If \(\phi = \phi(x,t)\) is the flux of cars, measured in cars per hour, derive a conservation law relating the density and flux. Why would \(\phi=\alpha u (\beta-u) (\alpha,\beta > 0)\) be a reasonable assumption? Write the resulting nonlinear PDE. 
+
+\vspace{2mm}
+
+\noindent
+\textit{Solution.}  We first observe that the flux \(\phi=\alpha u (\beta-u)\) seems like a very reasonable function. This function is zero when the density of cars is zero. This \(\phi\) also becomes zero whenever the density of cars reaches some positive constant, \(\beta\).  To solve for the conservation law, we first notice that the source function will be equal to zero since we are given that there are no entrances or exits. We now only need to find \( \phi_x \) in order to find the conservation law, \(u_t + \phi_x = 0 \). Notice,
+\begin{align*}
+\phi_x &= \frac{\partial}{\partial x} \phi \\
+ &= \frac{\partial}{\partial x}[ \alpha u (\beta-u) ] \\
+ &= \frac{\partial}{\partial x}[\alpha \beta u - \alpha u^2] \\
+ &= \alpha \beta u_x - 2 \alpha u u_x \\
+ &= \alpha u_x (\beta - 2u).
+\end{align*}
+
+\noindent
+Our final equation becomes,
+\[
+u_t + \alpha u_x (\beta - 2u) = 0 .
+\]
+\begin{flushright}
+\( \diamondsuit \) 
+\end{flushright}
+
+
+\newpage
+\noindent
+\textbf{Section 1.3.} 
+\\ \textbf{2.} Let \( u=u(x,t) \) satisfy the heat flow model
+\begin{align*}
+u_t &= ku_{xx},  \hspace{4mm} 0<x<l, \hspace{2mm}t>0 \\
+u(0,t) &= u(l,t) = 0, \hspace{4mm} t>0\\
+u(x,0)&= u_0(x),  \hspace{4mm} 0\leq x\leq l
+\end{align*}
+\noindent
+Show that,
+\[
+\int_0^l u(x,t)^2 dx \leq \int_0^l u_0(x)^2 dx , \hspace{4mm}  t\geq 0
+\]
+
+\vspace{3mm}
+\noindent
+\textit{Solution.} As suggested in the text, we will let \(E(t)=\int_0^l u(x,t)^2 dx \). We first notice that since the integrates the function \(u\) with respect to \(x\), then \(E(t)\) will be a function of \(t\) only. 
+To find \(E'(t)\), 
+\begin{align*}
+E'(t) &= \frac{\partial}{\partial t}[\int_0^l u(x,t)^2 dx ] \\
+ &=\int_0^l   \frac{\partial}{\partial t}u(x,t)^2 dx  \\
+\hspace{40mm}  &= \int_0^l 2 u u_t dx  \\
+ &= \int_0^l 2k u u_{xx} dx    \hspace{6mm} (\text{ since \(u_t = ku_{xx}\) }) \\
+&= 2k[u u_x]_0^l  - 2k \int_0^l u_x^2 dx  \hspace{6mm} (\text{ using integration by parts }) \\
+ &= 2k[0-0] -2k\int_0^l u_x^2 dx   \hspace{6mm} (\text{since }u(0,t) = u(l,t) = 0 ) \\
+ & \leq 0 \hspace{8mm}    (\text{since  } u_x^2 \geq 0, \Rightarrow -2k\int_0^l u_x^2 dx \leq 0)
+\end{align*}
+
+\noindent 
+Thus we have shown that the derivative of \(E\) is either zero or negative everywhere. So \(E(t) \leq E(0) , \forall t >0 \).  We also observe that \(E(0) = \int_0^l u(x,0)^2 dx =\int_0^l u_0(x)^2 dx \). \\
+\(\therefore \) \[ \int_0^l u(x,t)^2 dx \leq \int_0^l u_0(x)^2 dx. \]
+
+\begin{flushright}
+\( \diamondsuit \) 
+\end{flushright}
+
+
+
+\newpage
+\noindent
+\textbf{5.} Heat flow in a metal rod with a unit internal heat source is governed by the problem
+\[ u_t = ku_{xx} +1,   \hspace{3mm}  0<x<1,  \hspace{3mm}  t>0,\]
+\[ u(0,t) = 0,  \hspace{3mm} u(1,t) = 1,  \hspace{3mm}  t>0 \]
+\noindent
+What will be the steady-state temperature in the bar after a long time? Does it matter that no initial condition is given?
+
+\vspace{3mm}
+\noindent
+\textit{Solution.} We first observe that since we are investigating the steady-state temperature of the bar, it does not matter that we did not have an initial condition. The steady state temperature means that the temperature will not depend on time at all after a sufficiently long period of time has passed. So no matter how extreme the initial condition may be, the amount that \(u\) changes with respect to \(t\) will become arbitrarily small after a sufficient amount of time has passed. 
+ \newline
+ \noindent
+Thus, we can assume \(u_t = 0\) and solve the resulting ODE. 
+
+\begin{align*}
+u_{xx} &= -\frac{1}{k} \\
+u_x &=  -\frac{1}{k}x + c \\ 
+u &=  -\frac{1}{2k}x^2 + cx + d
+\end{align*}
+
+\noindent 
+Since \(u(0,t) = 0\),  \(\Rightarrow  d = 0 \).  And since \( u(1,t) = 1 \), then we know \(c = 1+\frac{1}{2k}\). Thus \( u(x) =  -\frac{1}{2k}x^2 + (1+\frac{1}{2k})x \).
+
+
+\begin{flushright}
+\( \diamondsuit \) 
+\end{flushright}
+
+
+\end{document}
+
